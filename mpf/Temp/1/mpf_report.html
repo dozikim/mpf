@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MPF Security Report</title>
+  <style>
+    :root { --bg:#0A0E1A;--panel:#141E35;--accent:#00D4FF;--accent2:#7B2FFF;--green:#00E676;--red:#FF3D57;--orange:#FF9100;--white:#FFFFFF;--muted:#8892A4; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--white); font-family:'Segoe UI',Arial,sans-serif; padding:30px; }
+    h1 { color:var(--accent); font-size:2rem; margin-bottom:5px; }
+    h2 { color:var(--accent); font-size:1.2rem; margin:25px 0 12px; border-bottom:2px solid var(--accent2); padding-bottom:5px; }
+    h3 { color:var(--accent2); font-size:1rem; margin-bottom:8px; }
+    .header { border-left:5px solid var(--accent); padding:15px 20px; background:var(--panel); border-radius:6px; margin-bottom:25px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px; margin-bottom:25px; }
+    .card { background:var(--panel); border-radius:8px; padding:20px; text-align:center; border-top:3px solid var(--accent); }
+    .card .val { font-size:2.2rem; font-weight:bold; color:var(--accent); }
+    .card .lbl { font-size:0.8rem; color:var(--muted); margin-top:5px; }
+    .finding { background:var(--panel); border-radius:6px; padding:15px; margin-bottom:12px; border-left:4px solid; }
+    .badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.75rem; font-weight:bold; color:#000; margin-right:6px; }
+    .CRITICAL { border-color:#FF3D57; } .badge-CRITICAL { background:#FF3D57; }
+    .HIGH     { border-color:#FF9100; } .badge-HIGH     { background:#FF9100; }
+    .MEDIUM   { border-color:#FFD600; } .badge-MEDIUM   { background:#FFD600; }
+    .LOW      { border-color:#00E676; } .badge-LOW      { background:#00E676; }
+    table { width:100%; border-collapse:collapse; background:var(--panel); border-radius:8px; overflow:hidden; }
+    th { background:var(--accent2); color:#fff; padding:10px 14px; text-align:left; font-size:0.85rem; }
+    td { padding:9px 14px; border-bottom:1px solid #1A2745; font-size:0.85rem; }
+    tr:last-child td { border-bottom:none; }
+    .chain { background:var(--panel); border-radius:8px; padding:16px; margin-bottom:12px; border-left:4px solid var(--accent2); }
+    .evidence { background:#050A14; border-radius:4px; padding:10px 14px; font-family:monospace; font-size:0.82rem; color:var(--accent); margin-top:8px; white-space:pre-wrap; }
+    .grade { font-size:3rem; font-weight:bold; color:var(--green); }
+    footer { text-align:center; color:var(--muted); font-size:0.8rem; margin-top:40px; border-top:1px solid #1A2745; padding-top:15px; }
+  </style>
+</head>
+<body>
+<div class="header">
+  <h1>&#128737; MPF Security Assessment Report</h1>
+  <p style="color:var(--muted)">Mobile Penetration Testing Framework v2.0.0 &nbsp;|&nbsp; Session: MPF-20260321-33679 &nbsp;|&nbsp; Generated: 2026-03-21 10:05:06</p>
+</div>
+
+<h2>Executive Summary</h2>
+<div class="grid">
+  <div class="card"><div class="val grade">F</div><div class="lbl">Compliance Grade</div></div>
+  <div class="card"><div class="val">31.2%</div><div class="lbl">Security Score</div></div>
+  <div class="card"><div class="val" style="color:var(--red)">5</div><div class="lbl">Critical Findings</div></div>
+  <div class="card"><div class="val" style="color:var(--orange)">5</div><div class="lbl">High Findings</div></div>
+  <div class="card"><div class="val" style="color:#FFD600">0</div><div class="lbl">Medium Findings</div></div>
+  <div class="card"><div class="val" style="color:var(--green)">3</div><div class="lbl">Attack Chains</div></div>
+</div>
+
+<h2>OWASP Mobile Top 10 Compliance</h2>
+<table>
+  <tr><th>Category</th><th>Name</th><th>Findings</th><th>Critical</th><th>High</th><th>Risk Level</th></tr>
+  <tr><td><strong>M1</strong></td><td>Improper Platform Usage</td><td>3</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>3</td><td><span class='badge badge-CRITICAL'>CRITICAL</span></td></tr>
+<tr><td><strong>M2</strong></td><td>Insecure Data Storage</td><td>1</td><td style='color:#FF3D57'>1</td><td style='color:#FF9100'>0</td><td><span class='badge badge-HIGH'>HIGH</span></td></tr>
+<tr><td><strong>M3</strong></td><td>Insecure Communication</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+<tr><td><strong>M4</strong></td><td>Insecure Authentication</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+<tr><td><strong>M5</strong></td><td>Insufficient Cryptography</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+<tr><td><strong>M6</strong></td><td>Insecure Authorization</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+<tr><td><strong>M7</strong></td><td>Client Code Quality</td><td>6</td><td style='color:#FF3D57'>4</td><td style='color:#FF9100'>2</td><td><span class='badge badge-CRITICAL'>CRITICAL</span></td></tr>
+<tr><td><strong>M8</strong></td><td>Code Tampering</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+<tr><td><strong>M9</strong></td><td>Reverse Engineering</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+<tr><td><strong>M10</strong></td><td>Extraneous Functionality</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+</table>
+
+<h2>Attack Chains Identified</h2>
+<div class="chain">
+  <h3>CHAIN-002: WebView RCE to Account Takeover &nbsp;<span class="badge badge-CRITICAL">CRITICAL</span></h3>
+  <p style="color:var(--muted);margin:6px 0">Attacker injects JavaScript via WebView, uses addJavascriptInterface to call native methods, then steals OAuth tokens.</p>
+  <p>Confidence: <strong style="color:var(--accent)">67%</strong> &nbsp; OWASP Path: <strong>M7 → M1 → M4</strong></p>
+  <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Identify WebView with JavaScript enabled</li><li>2. Inject malicious JavaScript payload</li><li>3. Invoke native Android methods via bridge interface</li><li>4. Extract OAuth token from app storage</li></ol>
+</div>
+<div class="chain">
+  <h3>CHAIN-003: IPC Bypass to Privilege Escalation &nbsp;<span class="badge badge-HIGH">HIGH</span></h3>
+  <p style="color:var(--muted);margin:6px 0">Malicious app exploits exported Activity/Service to trigger privileged operations without proper authorization.</p>
+  <p>Confidence: <strong style="color:var(--accent)">67%</strong> &nbsp; OWASP Path: <strong>M1 → M6 → M4</strong></p>
+  <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Discover exported components via manifest parsing</li><li>2. Launch exported Activity from malicious app</li><li>3. Trigger privileged operation without authentication</li><li>4. Gain unauthorized access to sensitive functionality</li></ol>
+</div>
+<div class="chain">
+  <h3>CHAIN-005: SQL Injection to Database Dump &nbsp;<span class="badge badge-CRITICAL">CRITICAL</span></h3>
+  <p style="color:var(--muted);margin:6px 0">SQL injection via ContentProvider allows attacker to dump entire application database.</p>
+  <p>Confidence: <strong style="color:var(--accent)">50%</strong> &nbsp; OWASP Path: <strong>M7 → M2</strong></p>
+  <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Identify vulnerable ContentProvider query</li><li>2. Craft SQL injection payload</li><li>3. Execute UNION SELECT to enumerate tables</li><li>4. Extract all sensitive data from database</li></ol>
+</div>
+
+
+<h2>Vulnerability Findings (10)</h2>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
+  <strong>WebView JavaScript Enabled</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">WebView has JavaScript enabled with addJavascriptInterface, creating a Remote Code Execution attack surface.</p>
+  <div class="evidence">webView.addJavascriptInterface(new WebAppInterface(this), "Android");</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Disable JavaScript unless required. Use @JavascriptInterface annotation with input validation.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: DatabaseHelper.java | Line: 299 | CVSS: 9.8</p>
+</div>
+<div class="finding HIGH">
+  <span class="badge badge-HIGH">HIGH</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
+  <strong>Unvalidated Intent Extra Data</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M7 category: Unvalidated Intent Extra Data.</p>
+  <div class="evidence">Pattern matched in decompiled source. See full evidence in detailed report.</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: ApiClient.java | Line: 277 | CVSS: 7.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
+  <strong>SQL Injection via String Concatenation</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Raw SQL query constructed via string concatenation allows SQL injection by manipulating user input.</p>
+  <div class="evidence">db.rawQuery("SELECT * FROM users WHERE id='" + userId + "'")</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Use parameterized queries: db.rawQuery("SELECT * FROM users WHERE id=?", new String[]{userId})</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: NetworkManager.java | Line: 30 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
+  <strong>WebView JavaScript Enabled</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">WebView has JavaScript enabled with addJavascriptInterface, creating a Remote Code Execution attack surface.</p>
+  <div class="evidence">webView.addJavascriptInterface(new WebAppInterface(this), "Android");</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Disable JavaScript unless required. Use @JavascriptInterface annotation with input validation.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: NetworkManager.java | Line: 308 | CVSS: 9.4</p>
+</div>
+<div class="finding HIGH">
+  <span class="badge badge-HIGH">HIGH</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M1</span>
+  <strong>Exported Activity without Permission</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Activity is exported without permission restriction, allowing any app to launch it directly.</p>
+  <div class="evidence"><activity android:name=".AdminActivity" android:exported="true"/></div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Add android:permission attribute or set exported=false if not needed externally.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: UserRepository.java | Line: 403 | CVSS: 7.8</p>
+</div>
+<div class="finding HIGH">
+  <span class="badge badge-HIGH">HIGH</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M1</span>
+  <strong>Unprotected Broadcast Receiver</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M1 category: Unprotected Broadcast Receiver.</p>
+  <div class="evidence">Pattern matched in decompiled source. See full evidence in detailed report.</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: NetworkManager.java | Line: 260 | CVSS: 8.7</p>
+</div>
+<div class="finding HIGH">
+  <span class="badge badge-HIGH">HIGH</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M1</span>
+  <strong>Unvalidated Deep Link Handler</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M1 category: Unvalidated Deep Link Handler.</p>
+  <div class="evidence">Pattern matched in decompiled source. See full evidence in detailed report.</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: StorageManager.java | Line: 66 | CVSS: 7.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M2</span>
+  <strong>World-Readable File Storage</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application opens files with MODE_WORLD_READABLE flag, allowing any app on the device to read the file contents.</p>
+  <div class="evidence">openFileOutput("data.txt", Context.MODE_WORLD_READABLE)</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Use MODE_PRIVATE for file operations. Never use world-readable/writable modes.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: ApiClient.java | Line: 334 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
+  <strong>WebView JavaScript Enabled</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">WebView has JavaScript enabled with addJavascriptInterface, creating a Remote Code Execution attack surface.</p>
+  <div class="evidence">webView.addJavascriptInterface(new WebAppInterface(this), "Android");</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Disable JavaScript unless required. Use @JavascriptInterface annotation with input validation.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: DatabaseHelper.java | Line: 424 | CVSS: 9.4</p>
+</div>
+<div class="finding HIGH">
+  <span class="badge badge-HIGH">HIGH</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
+  <strong>Unvalidated Intent Extra Data</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M7 category: Unvalidated Intent Extra Data.</p>
+  <div class="evidence">Pattern matched in decompiled source. See full evidence in detailed report.</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: NetworkManager.java | Line: 260 | CVSS: 8.1</p>
+</div>
+
+
+<h2>Recommendations</h2>
+<ol style="padding-left:20px; line-height:2">
+  <li>Remediate all <strong style="color:var(--red)">CRITICAL</strong> findings before next production release</li>
+  <li>Implement SSL Certificate Pinning to prevent MITM attacks</li>
+  <li>Enable ProGuard/R8 obfuscation and set debuggable=false</li>
+  <li>Replace hardcoded credentials with Android Keystore API</li>
+  <li>Conduct re-assessment after remediation to verify fixes</li>
+</ol>
+
+<footer>Generated by MPF – Mobile Penetration Testing Framework v2.0.0 &copy; 2026 | For educational and authorized testing use only.</footer>
+</body></html>

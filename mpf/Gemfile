@@ -1,0 +1,14 @@
+source 'https://rubygems.org'
+
+ruby '>= 2.7.0'
+
+# Core framework — all stdlib, no gems required for base functionality
+# The following are optional enhancements
+
+gem 'json',      '>= 2.6'    # JSON report generation (usually stdlib)
+gem 'rake',      '>= 13.0'   # Task automation
+
+group :development, :test do
+  gem 'rspec',   '>= 3.12'   # Unit testing
+  gem 'rubocop', '>= 1.50'   # Code style linting
+end

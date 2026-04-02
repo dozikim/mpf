@@ -1,0 +1,437 @@
+{
+  "meta": {
+    "tool": "MPF – Mobile Penetration Testing Framework",
+    "version": "2.0.0",
+    "generated": "2026-03-21T10:05:06+05:30",
+    "session": {
+      "session_id": "MPF-20260321-33679",
+      "started_at": "2026-03-21T09:56:55+05:30",
+      "total_finds": 10,
+      "critical": 5,
+      "high": 5,
+      "medium": 0,
+      "low": 0
+    }
+  },
+  "executive_summary": {
+    "overall_score": 31.2,
+    "grade": "F",
+    "total_findings": 10,
+    "severity": {
+      "critical": 5,
+      "high": 5,
+      "medium": 0,
+      "low": 0
+    },
+    "owasp_coverage": "100% (10/10 categories)",
+    "attack_chains": 3
+  },
+  "owasp_compliance": {
+    "M1": {
+      "name": "Improper Platform Usage",
+      "findings": 3,
+      "raw_score": 21,
+      "weighted": 21.0,
+      "risk_level": "CRITICAL",
+      "critical": 0,
+      "high": 3,
+      "medium": 0,
+      "low": 0
+    },
+    "M2": {
+      "name": "Insecure Data Storage",
+      "findings": 1,
+      "raw_score": 10,
+      "weighted": 10.0,
+      "risk_level": "HIGH",
+      "critical": 1,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "M3": {
+      "name": "Insecure Communication",
+      "findings": 0,
+      "raw_score": 0,
+      "weighted": 0.0,
+      "risk_level": "LOW",
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "M4": {
+      "name": "Insecure Authentication",
+      "findings": 0,
+      "raw_score": 0,
+      "weighted": 0.0,
+      "risk_level": "LOW",
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "M5": {
+      "name": "Insufficient Cryptography",
+      "findings": 0,
+      "raw_score": 0,
+      "weighted": 0.0,
+      "risk_level": "LOW",
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "M6": {
+      "name": "Insecure Authorization",
+      "findings": 0,
+      "raw_score": 0,
+      "weighted": 0.0,
+      "risk_level": "LOW",
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "M7": {
+      "name": "Client Code Quality",
+      "findings": 6,
+      "raw_score": 54,
+      "weighted": 37.8,
+      "risk_level": "CRITICAL",
+      "critical": 4,
+      "high": 2,
+      "medium": 0,
+      "low": 0
+    },
+    "M8": {
+      "name": "Code Tampering",
+      "findings": 0,
+      "raw_score": 0,
+      "weighted": 0.0,
+      "risk_level": "LOW",
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "M9": {
+      "name": "Reverse Engineering",
+      "findings": 0,
+      "raw_score": 0,
+      "weighted": 0.0,
+      "risk_level": "LOW",
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "M10": {
+      "name": "Extraneous Functionality",
+      "findings": 0,
+      "raw_score": 0,
+      "weighted": 0.0,
+      "risk_level": "LOW",
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    }
+  },
+  "attack_chains": [
+    {
+      "id": "CHAIN-002",
+      "name": "WebView RCE to Account Takeover",
+      "description": "Attacker injects JavaScript via WebView, uses addJavascriptInterface to call native methods, then steals OAuth tokens.",
+      "owasp_chain": [
+        "M7",
+        "M1",
+        "M4"
+      ],
+      "steps": [
+        "Identify WebView with JavaScript enabled",
+        "Inject malicious JavaScript payload",
+        "Invoke native Android methods via bridge interface",
+        "Extract OAuth token from app storage"
+      ],
+      "severity": "CRITICAL",
+      "trigger_rules": [
+        "webview_js",
+        "intent_extra_unsafe",
+        "hardcoded_creds"
+      ],
+      "confidence": 67,
+      "matched_rules": [
+        "webview_js",
+        "intent_extra_unsafe"
+      ],
+      "missing_rules": [
+        "hardcoded_creds"
+      ],
+      "exploitability": {
+        "score": 6.0,
+        "label": "Medium"
+      }
+    },
+    {
+      "id": "CHAIN-003",
+      "name": "IPC Bypass to Privilege Escalation",
+      "description": "Malicious app exploits exported Activity/Service to trigger privileged operations without proper authorization.",
+      "owasp_chain": [
+        "M1",
+        "M6",
+        "M4"
+      ],
+      "steps": [
+        "Discover exported components via manifest parsing",
+        "Launch exported Activity from malicious app",
+        "Trigger privileged operation without authentication",
+        "Gain unauthorized access to sensitive functionality"
+      ],
+      "severity": "HIGH",
+      "trigger_rules": [
+        "exported_activity",
+        "exported_receiver",
+        "missing_permission"
+      ],
+      "confidence": 67,
+      "matched_rules": [
+        "exported_activity",
+        "exported_receiver"
+      ],
+      "missing_rules": [
+        "missing_permission"
+      ],
+      "exploitability": {
+        "score": 4.7,
+        "label": "Medium"
+      }
+    },
+    {
+      "id": "CHAIN-005",
+      "name": "SQL Injection to Database Dump",
+      "description": "SQL injection via ContentProvider allows attacker to dump entire application database.",
+      "owasp_chain": [
+        "M7",
+        "M2"
+      ],
+      "steps": [
+        "Identify vulnerable ContentProvider query",
+        "Craft SQL injection payload",
+        "Execute UNION SELECT to enumerate tables",
+        "Extract all sensitive data from database"
+      ],
+      "severity": "CRITICAL",
+      "trigger_rules": [
+        "sql_injection_vuln",
+        "sqlite_no_encrypt"
+      ],
+      "confidence": 50,
+      "matched_rules": [
+        "sql_injection_vuln"
+      ],
+      "missing_rules": [
+        "sqlite_no_encrypt"
+      ],
+      "exploitability": {
+        "score": 4.5,
+        "label": "Medium"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "MPF-WEBVIE-6557",
+      "title": "WebView JavaScript Enabled",
+      "rule_id": "webview_js",
+      "owasp": "M7",
+      "severity": "CRITICAL",
+      "description": "WebView has JavaScript enabled with addJavascriptInterface, creating a Remote Code Execution attack surface.",
+      "evidence": "webView.addJavascriptInterface(new WebAppInterface(this), \"Android\");",
+      "file_ref": "DatabaseHelper.java",
+      "line_number": 299,
+      "remediation": "Disable JavaScript unless required. Use @JavascriptInterface annotation with input validation.",
+      "cvss_score": 9.8,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT",
+      "timestamp": "2026-03-21T09:57:09+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-INTENT-2169",
+      "title": "Unvalidated Intent Extra Data",
+      "rule_id": "intent_extra_unsafe",
+      "owasp": "M7",
+      "severity": "HIGH",
+      "description": "Vulnerability detected matching OWASP M7 category: Unvalidated Intent Extra Data.",
+      "evidence": "Pattern matched in decompiled source. See full evidence in detailed report.",
+      "file_ref": "ApiClient.java",
+      "line_number": 277,
+      "remediation": "Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.",
+      "cvss_score": 7.3,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT",
+      "timestamp": "2026-03-21T09:57:09+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-SQL_IN-5888",
+      "title": "SQL Injection via String Concatenation",
+      "rule_id": "sql_injection_vuln",
+      "owasp": "M7",
+      "severity": "CRITICAL",
+      "description": "Raw SQL query constructed via string concatenation allows SQL injection by manipulating user input.",
+      "evidence": "db.rawQuery(\"SELECT * FROM users WHERE id='\" + userId + \"'\")",
+      "file_ref": "NetworkManager.java",
+      "line_number": 30,
+      "remediation": "Use parameterized queries: db.rawQuery(\"SELECT * FROM users WHERE id=?\", new String[]{userId})",
+      "cvss_score": 9.2,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT",
+      "timestamp": "2026-03-21T09:57:10+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-WEBVIE-7183",
+      "title": "WebView JavaScript Enabled",
+      "rule_id": "webview_js",
+      "owasp": "M7",
+      "severity": "CRITICAL",
+      "description": "WebView has JavaScript enabled with addJavascriptInterface, creating a Remote Code Execution attack surface.",
+      "evidence": "webView.addJavascriptInterface(new WebAppInterface(this), \"Android\");",
+      "file_ref": "NetworkManager.java",
+      "line_number": 308,
+      "remediation": "Disable JavaScript unless required. Use @JavascriptInterface annotation with input validation.",
+      "cvss_score": 9.4,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT",
+      "timestamp": "2026-03-21T09:57:10+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-EXPORT-8363",
+      "title": "Exported Activity without Permission",
+      "rule_id": "exported_activity",
+      "owasp": "M1",
+      "severity": "HIGH",
+      "description": "Activity is exported without permission restriction, allowing any app to launch it directly.",
+      "evidence": "<activity android:name=\".AdminActivity\" android:exported=\"true\"/>",
+      "file_ref": "UserRepository.java",
+      "line_number": 403,
+      "remediation": "Add android:permission attribute or set exported=false if not needed externally.",
+      "cvss_score": 7.8,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT",
+      "timestamp": "2026-03-21T09:57:10+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-EXPORT-9874",
+      "title": "Unprotected Broadcast Receiver",
+      "rule_id": "exported_receiver",
+      "owasp": "M1",
+      "severity": "HIGH",
+      "description": "Vulnerability detected matching OWASP M1 category: Unprotected Broadcast Receiver.",
+      "evidence": "Pattern matched in decompiled source. See full evidence in detailed report.",
+      "file_ref": "NetworkManager.java",
+      "line_number": 260,
+      "remediation": "Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.",
+      "cvss_score": 8.7,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT",
+      "timestamp": "2026-03-21T09:57:10+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-DEEPLI-2292",
+      "title": "Unvalidated Deep Link Handler",
+      "rule_id": "deeplink_no_validate",
+      "owasp": "M1",
+      "severity": "HIGH",
+      "description": "Vulnerability detected matching OWASP M1 category: Unvalidated Deep Link Handler.",
+      "evidence": "Pattern matched in decompiled source. See full evidence in detailed report.",
+      "file_ref": "StorageManager.java",
+      "line_number": 66,
+      "remediation": "Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.",
+      "cvss_score": 7.5,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT",
+      "timestamp": "2026-03-21T09:57:10+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-WORLD_-4216",
+      "title": "World-Readable File Storage",
+      "rule_id": "world_readable",
+      "owasp": "M2",
+      "severity": "CRITICAL",
+      "description": "The application opens files with MODE_WORLD_READABLE flag, allowing any app on the device to read the file contents.",
+      "evidence": "openFileOutput(\"data.txt\", Context.MODE_WORLD_READABLE)",
+      "file_ref": "ApiClient.java",
+      "line_number": 334,
+      "remediation": "Use MODE_PRIVATE for file operations. Never use world-readable/writable modes.",
+      "cvss_score": 9.8,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT",
+      "timestamp": "2026-03-21T09:57:11+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-WEBVIE-5201",
+      "title": "WebView JavaScript Enabled",
+      "rule_id": "webview_js",
+      "owasp": "M7",
+      "severity": "CRITICAL",
+      "description": "WebView has JavaScript enabled with addJavascriptInterface, creating a Remote Code Execution attack surface.",
+      "evidence": "webView.addJavascriptInterface(new WebAppInterface(this), \"Android\");",
+      "file_ref": "DatabaseHelper.java",
+      "line_number": 424,
+      "remediation": "Disable JavaScript unless required. Use @JavascriptInterface annotation with input validation.",
+      "cvss_score": 9.4,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT SHARMA\\Downloads\\fake-bank-app-release-v1.0",
+      "timestamp": "2026-03-21T10:04:31+05:30",
+      "session_id": "MPF-20260321-33679"
+    },
+    {
+      "id": "MPF-INTENT-9524",
+      "title": "Unvalidated Intent Extra Data",
+      "rule_id": "intent_extra_unsafe",
+      "owasp": "M7",
+      "severity": "HIGH",
+      "description": "Vulnerability detected matching OWASP M7 category: Unvalidated Intent Extra Data.",
+      "evidence": "Pattern matched in decompiled source. See full evidence in detailed report.",
+      "file_ref": "NetworkManager.java",
+      "line_number": 260,
+      "remediation": "Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.",
+      "cvss_score": 8.1,
+      "module_context": null,
+      "apk": "\"C:\\Users\\BHARAT SHARMA\\Downloads\\fake-bank-app-release-v1.0",
+      "timestamp": "2026-03-21T10:04:31+05:30",
+      "session_id": "MPF-20260321-33679"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Fix all CRITICAL severity vulnerabilities immediately before next release"
+    },
+    {
+      "priority": 2,
+      "action": "Implement Certificate Pinning to prevent MITM attacks"
+    },
+    {
+      "priority": 3,
+      "action": "Enable ProGuard/R8 obfuscation and disable debug flags"
+    },
+    {
+      "priority": 4,
+      "action": "Replace all hardcoded credentials with secure key management"
+    },
+    {
+      "priority": 5,
+      "action": "Conduct penetration test after fixes to verify remediation"
+    }
+  ],
+  "audit_log": "[2026-03-21T09:57:09+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:09+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:09+05:30] USE apk_info_scanner\n[2026-03-21T09:57:09+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:09+05:30] USE permission_analyzer\n[2026-03-21T09:57:09+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:09+05:30] USE sql_injection\n[2026-03-21T09:57:09+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:09+05:30] FINDING: WebView JavaScript Enabled [CRITICAL]\n[2026-03-21T09:57:09+05:30] FINDING: Unvalidated Intent Extra Data [HIGH]\n[2026-03-21T09:57:10+05:30] USE webview_rce\n[2026-03-21T09:57:10+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:10+05:30] FINDING: SQL Injection via String Concatenation [CRITICAL]\n[2026-03-21T09:57:10+05:30] FINDING: WebView JavaScript Enabled [CRITICAL]\n[2026-03-21T09:57:10+05:30] USE ipc_bypass\n[2026-03-21T09:57:10+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:10+05:30] FINDING: Exported Activity without Permission [HIGH]\n[2026-03-21T09:57:10+05:30] FINDING: Unprotected Broadcast Receiver [HIGH]\n[2026-03-21T09:57:10+05:30] FINDING: Unvalidated Deep Link Handler [HIGH]\n[2026-03-21T09:57:10+05:30] USE intent_hijacking\n[2026-03-21T09:57:10+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:11+05:30] USE deeplink_injection\n[2026-03-21T09:57:11+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:11+05:30] USE broadcast_receiver_exploit\n[2026-03-21T09:57:11+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:11+05:30] USE clipboard_hijack\n[2026-03-21T09:57:11+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:11+05:30] FINDING: World-Readable File Storage [CRITICAL]\n[2026-03-21T09:57:11+05:30] USE fragment_injection\n[2026-03-21T09:57:11+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T09:57:12+05:30] USE tapjacking\n[2026-03-21T09:57:12+05:30] SET TARGET=\"C:\\Users\\BHARAT\n[2026-03-21T10:03:13+05:30] USE sql_injection\n[2026-03-21T10:03:21+05:30] SET TARGET=\"C:\\Users\\BHARAT SHARMA\\Downloads\\fake-bank-app-release-v1.0.apk\"\n[2026-03-21T10:04:01+05:30] SET PAYLOAD=payloads/android/data_exfiltration\n[2026-03-21T10:04:25+05:30] SET OUTPUT=Temp/1\n[2026-03-21T10:04:31+05:30] FINDING: WebView JavaScript Enabled [CRITICAL]\n[2026-03-21T10:04:31+05:30] FINDING: Unvalidated Intent Extra Data [HIGH]"
+}

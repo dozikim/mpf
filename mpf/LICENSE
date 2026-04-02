@@ -1,0 +1,33 @@
+MPF – Mobile Penetration Testing Framework
+Copyright (c) 2026 MPF Research Team
+
+EDUCATIONAL AND RESEARCH USE LICENSE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to use
+the Software for:
+
+  1. Academic research and study
+  2. Authorised security testing on systems you own or have explicit written
+     permission to test
+  3. Educational purposes in controlled lab environments
+
+RESTRICTIONS:
+
+  - You may NOT use this Software to test systems without explicit written
+    authorisation from the system owner.
+  - You may NOT use this Software for malicious, illegal, or unethical purposes.
+  - You may NOT distribute modified versions without clearly marking changes.
+
+DISCLAIMER:
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. THE AUTHORS
+ARE NOT RESPONSIBLE FOR ANY MISUSE OR DAMAGE CAUSED BY THIS SOFTWARE.
+
+LEGAL WARNING:
+
+Unauthorised use of security testing tools against systems you do not own
+or do not have explicit permission to test is illegal in most jurisdictions
+and may result in criminal prosecution.
+
+Always obtain proper written authorisation before conducting any security assessment.

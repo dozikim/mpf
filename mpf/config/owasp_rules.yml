@@ -1,0 +1,79 @@
+# =============================================================================
+# MPF OWASP Detection Rules Configuration
+# Framework Version: 2.0.0
+# =============================================================================
+
+owasp_categories:
+  M1:
+    name: "Improper Platform Usage"
+    weight: 1.0
+    description: "Misuse of platform features or failure to use platform security controls"
+  M2:
+    name: "Insecure Data Storage"
+    weight: 1.0
+    description: "Sensitive data stored without encryption or in insecure locations"
+  M3:
+    name: "Insecure Communication"
+    weight: 0.9
+    description: "Failure to properly secure data in transit (cleartext, weak TLS)"
+  M4:
+    name: "Insecure Authentication"
+    weight: 0.9
+    description: "Weak or missing authentication controls allowing unauthorised access"
+  M5:
+    name: "Insufficient Cryptography"
+    weight: 0.8
+    description: "Use of broken or weak cryptographic algorithms and key management"
+  M6:
+    name: "Insecure Authorization"
+    weight: 0.8
+    description: "Authorisation flaws allowing privilege escalation or unauthorised actions"
+  M7:
+    name: "Client Code Quality"
+    weight: 0.7
+    description: "Code-level issues: injection flaws, buffer overflows, insecure input handling"
+  M8:
+    name: "Code Tampering"
+    weight: 0.6
+    description: "Binary patching, local resource modification, method hooking"
+  M9:
+    name: "Reverse Engineering"
+    weight: 0.5
+    description: "Lack of obfuscation allowing analysis of core binary and algorithms"
+  M10:
+    name: "Extraneous Functionality"
+    weight: 0.4
+    description: "Hidden backdoors, debug features or test endpoints in production builds"
+
+severity_weights:
+  CRITICAL: 10
+  HIGH: 7
+  MEDIUM: 4
+  LOW: 1
+
+exploit_payload_compatibility:
+  sql_injection:              [data_exfiltration, credential_stealer]
+  webview_rce:                [reverse_shell, screen_capture, token_extractor]
+  ipc_bypass:                 [persistence_agent, token_extractor, data_exfiltration]
+  intent_hijacking:           [broadcast_spoofer, gps_tracker, clipboard_spy]
+  deeplink_injection:         [data_exfiltration, log_injector]
+  broadcast_receiver_exploit: [broadcast_spoofer, persistence_agent]
+  clipboard_hijack:           [credential_stealer, clipboard_spy]
+  fragment_injection:         [keylogger, credential_stealer]
+  tapjacking:                 [credential_stealer, screen_capture]
+
+output_formats:
+  - json
+  - html
+  - pdf
+
+supported_platforms:
+  - "Linux (Ubuntu 20.04+)"
+  - "macOS 10.15+"
+  - "Windows (WSL2 / Git Bash)"
+
+android_api_range:
+  min: 21
+  max: 34
+  min_name: "Android 5.0 Lollipop"
+  max_name: "Android 14"
