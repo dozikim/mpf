@@ -346,10 +346,10 @@ module MPF
       end
 
       def ok(msg)
-        puts("\e[32m[+]\e[0m \#{msg}")
+        puts("\e[32m[+]\e[0m #{msg}")
       end
       def err(msg)
-        puts("\e[31m[-]\e[0m \#{msg}")
+        puts("\e[31m[-]\e[0m #{msg}")
       end
       def status_ok(msg)
         puts("      \e[32m[OK]\e[0m #{msg}")

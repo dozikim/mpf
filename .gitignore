@@ -1,0 +1,41 @@
+# --- MPF Web (Flask) ---
+webapp/.env
+webapp/uploads/
+webapp/reports/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+
+# Claude
+.claude/
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Python
+venv/
+backend/venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+.env.*
+
+# Build
+dist/
+build/
+coverage/
+
+# IDE
+.vscode/
+.idea/

@@ -34,35 +34,41 @@
 <body>
 <div class="header">
   <h1>&#128737; MPF Security Assessment Report</h1>
-  <p style="color:var(--muted)">Mobile Penetration Testing Framework v2.0.0 &nbsp;|&nbsp; Session: MPF-20260321-21571 &nbsp;|&nbsp; Generated: 2026-03-21 17:16:27</p>
+  <p style="color:var(--muted)">Mobile Penetration Testing Framework v2.0.0 &nbsp;|&nbsp; Session: MPF-20260722-40720 &nbsp;|&nbsp; Generated: 2026-07-22 05:08:31</p>
 </div>
 
 <h2>Executive Summary</h2>
 <div class="grid">
-  <div class="card"><div class="val grade">D</div><div class="lbl">Compliance Grade</div></div>
-  <div class="card"><div class="val">51.5%</div><div class="lbl">Security Score</div></div>
-  <div class="card"><div class="val" style="color:var(--red)">4</div><div class="lbl">Critical Findings</div></div>
-  <div class="card"><div class="val" style="color:var(--orange)">3</div><div class="lbl">High Findings</div></div>
-  <div class="card"><div class="val" style="color:#FFD600">1</div><div class="lbl">Medium Findings</div></div>
-  <div class="card"><div class="val" style="color:var(--green)">3</div><div class="lbl">Attack Chains</div></div>
+  <div class="card"><div class="val grade">F</div><div class="lbl">Compliance Grade</div></div>
+  <div class="card"><div class="val">0%</div><div class="lbl">Security Score</div></div>
+  <div class="card"><div class="val" style="color:var(--red)">133</div><div class="lbl">Critical Findings</div></div>
+  <div class="card"><div class="val" style="color:var(--orange)">4</div><div class="lbl">High Findings</div></div>
+  <div class="card"><div class="val" style="color:#FFD600">2</div><div class="lbl">Medium Findings</div></div>
+  <div class="card"><div class="val" style="color:var(--green)">5</div><div class="lbl">Attack Chains</div></div>
 </div>
 
 <h2>OWASP Mobile Top 10 Compliance</h2>
 <table>
   <tr><th>Category</th><th>Name</th><th>Findings</th><th>Critical</th><th>High</th><th>Risk Level</th></tr>
-  <tr><td><strong>M1</strong></td><td>Improper Platform Usage</td><td>2</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>2</td><td><span class='badge badge-HIGH'>HIGH</span></td></tr>
-<tr><td><strong>M2</strong></td><td>Insecure Data Storage</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
-<tr><td><strong>M3</strong></td><td>Insecure Communication</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+  <tr><td><strong>M1</strong></td><td>Improper Platform Usage</td><td>1</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-MEDIUM'>MEDIUM</span></td></tr>
+<tr><td><strong>M2</strong></td><td>Insecure Data Storage</td><td>2</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>2</td><td><span class='badge badge-HIGH'>HIGH</span></td></tr>
+<tr><td><strong>M3</strong></td><td>Insecure Communication</td><td>131</td><td style='color:#FF3D57'>131</td><td style='color:#FF9100'>0</td><td><span class='badge badge-CRITICAL'>CRITICAL</span></td></tr>
 <tr><td><strong>M4</strong></td><td>Insecure Authentication</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
 <tr><td><strong>M5</strong></td><td>Insufficient Cryptography</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
-<tr><td><strong>M6</strong></td><td>Insecure Authorization</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
-<tr><td><strong>M7</strong></td><td>Client Code Quality</td><td>5</td><td style='color:#FF3D57'>4</td><td style='color:#FF9100'>1</td><td><span class='badge badge-CRITICAL'>CRITICAL</span></td></tr>
+<tr><td><strong>M6</strong></td><td>Insecure Authorization</td><td>2</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>1</td><td><span class='badge badge-HIGH'>HIGH</span></td></tr>
+<tr><td><strong>M7</strong></td><td>Client Code Quality</td><td>3</td><td style='color:#FF3D57'>2</td><td style='color:#FF9100'>1</td><td><span class='badge badge-CRITICAL'>CRITICAL</span></td></tr>
 <tr><td><strong>M8</strong></td><td>Code Tampering</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
 <tr><td><strong>M9</strong></td><td>Reverse Engineering</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
-<tr><td><strong>M10</strong></td><td>Extraneous Functionality</td><td>1</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
+<tr><td><strong>M10</strong></td><td>Extraneous Functionality</td><td>0</td><td style='color:#FF3D57'>0</td><td style='color:#FF9100'>0</td><td><span class='badge badge-LOW'>LOW</span></td></tr>
 </table>
 
 <h2>Attack Chains Identified</h2>
+<div class="chain">
+  <h3>CHAIN-005: SQL Injection to Database Dump &nbsp;<span class="badge badge-CRITICAL">CRITICAL</span></h3>
+  <p style="color:var(--muted);margin:6px 0">SQL injection via ContentProvider allows attacker to dump entire application database.</p>
+  <p>Confidence: <strong style="color:var(--accent)">100%</strong> &nbsp; OWASP Path: <strong>M7 → M2</strong></p>
+  <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Identify vulnerable ContentProvider query</li><li>2. Craft SQL injection payload</li><li>3. Execute UNION SELECT to enumerate tables</li><li>4. Extract all sensitive data from database</li></ol>
+</div>
 <div class="chain">
   <h3>CHAIN-002: WebView RCE to Account Takeover &nbsp;<span class="badge badge-CRITICAL">CRITICAL</span></h3>
   <p style="color:var(--muted);margin:6px 0">Attacker injects JavaScript via WebView, uses addJavascriptInterface to call native methods, then steals OAuth tokens.</p>
@@ -70,10 +76,10 @@
   <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Identify WebView with JavaScript enabled</li><li>2. Inject malicious JavaScript payload</li><li>3. Invoke native Android methods via bridge interface</li><li>4. Extract OAuth token from app storage</li></ol>
 </div>
 <div class="chain">
-  <h3>CHAIN-005: SQL Injection to Database Dump &nbsp;<span class="badge badge-CRITICAL">CRITICAL</span></h3>
-  <p style="color:var(--muted);margin:6px 0">SQL injection via ContentProvider allows attacker to dump entire application database.</p>
-  <p>Confidence: <strong style="color:var(--accent)">50%</strong> &nbsp; OWASP Path: <strong>M7 → M2</strong></p>
-  <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Identify vulnerable ContentProvider query</li><li>2. Craft SQL injection payload</li><li>3. Execute UNION SELECT to enumerate tables</li><li>4. Extract all sensitive data from database</li></ol>
+  <h3>CHAIN-001: Data Exfiltration via Insecure Storage &nbsp;<span class="badge badge-CRITICAL">CRITICAL</span></h3>
+  <p style="color:var(--muted);margin:6px 0">Attacker reads plaintext credentials from SharedPreferences, bypasses authentication, then exfiltrates data via cleartext HTTP.</p>
+  <p>Confidence: <strong style="color:var(--accent)">33%</strong> &nbsp; OWASP Path: <strong>M2 → M4 → M3</strong></p>
+  <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Locate sensitive data in SharedPreferences</li><li>2. Extract credentials from plaintext storage</li><li>3. Bypass authentication using stolen credentials</li><li>4. Exfiltrate data via HTTP endpoint</li></ol>
 </div>
 <div class="chain">
   <h3>CHAIN-003: IPC Bypass to Privilege Escalation &nbsp;<span class="badge badge-HIGH">HIGH</span></h3>
@@ -81,80 +87,1265 @@
   <p>Confidence: <strong style="color:var(--accent)">33%</strong> &nbsp; OWASP Path: <strong>M1 → M6 → M4</strong></p>
   <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Discover exported components via manifest parsing</li><li>2. Launch exported Activity from malicious app</li><li>3. Trigger privileged operation without authentication</li><li>4. Gain unauthorized access to sensitive functionality</li></ol>
 </div>
+<div class="chain">
+  <h3>CHAIN-004: MITM Attack via SSL Bypass &nbsp;<span class="badge badge-CRITICAL">CRITICAL</span></h3>
+  <p style="color:var(--muted);margin:6px 0">Attacker performs Man-in-the-Middle attack by exploiting disabled SSL validation and cleartext traffic.</p>
+  <p>Confidence: <strong style="color:var(--accent)">33%</strong> &nbsp; OWASP Path: <strong>M3 → M5</strong></p>
+  <ol style="margin-top:8px;padding-left:20px;color:#E8EEF7;line-height:1.9"><li>1. Set up network proxy on same network</li><li>2. Exploit disabled SSL certificate validation</li><li>3. Intercept and decrypt application traffic</li><li>4. Steal session tokens and credentials in transit</li></ol>
+</div>
 
 
-<h2>Vulnerability Findings (8)</h2>
+<h2>Vulnerability Findings (139)</h2>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">uration android **http://schemas.android.com/apk/res/android    alpha   �    A���  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_fade_in.xml | Line: 1 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">uration android **http://schemas.android.com/apk/res/android    alpha   �    A���  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_fade_out.xml | Line: 1 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">toAlpha android **http://schemas.android.com/apk/res/android    set scale alpha   � 4   �A�</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_grow_fade_in_from_bottom.xml | Line: 5 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">uration android **http://schemas.android.com/apk/res/android    set alpha �    ���A�</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_popup_enter.xml | Line: 2 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">uration android **http://schemas.android.com/apk/res/android    set alpha �    ���A�</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_popup_exit.xml | Line: 2 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">toAlpha android **http://schemas.android.com/apk/res/android    set scale alpha   � 4   �A�</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_shrink_fade_out_from_bottom.xml | Line: 5 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">uration android **http://schemas.android.com/apk/res/android     translate �    A���  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_slide_in_bottom.xml | Line: 3 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">uration android **http://schemas.android.com/apk/res/android     translate �    A���  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_slide_in_top.xml | Line: 3 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">uration android **http://schemas.android.com/apk/res/android     translate �    A���  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_slide_out_bottom.xml | Line: 3 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">uration android **http://schemas.android.com/apk/res/android     translate �    A���  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/abc_slide_out_top.xml | Line: 3 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">pivotY android **http://schemas.android.com/apk/res/android    set alpha scale � (   ���</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/design_fab_in.xml | Line: 5 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">pivotY android **http://schemas.android.com/apk/res/android    set alpha scale � (   ���</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/design_fab_out.xml | Line: 5 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">oYDelta android **http://schemas.android.com/apk/res/android     translate   �    ��     </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/design_snackbar_in.xml | Line: 3 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">oYDelta android **http://schemas.android.com/apk/res/android     translate   �    ��     </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/anim/design_snackbar_out.xml | Line: 3 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color-v11/abc_background_cache_hint_selector_material_dark.xml | Line: 1 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color-v11/abc_background_cache_hint_selector_material_light.xml | Line: 1 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � � �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color-v23/abc_color_highlight_material.xml | Line: 1 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �     �     </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_background_cache_hint_selector_material_dark.xml | Line: 1 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �     �     </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_background_cache_hint_selector_material_light.xml | Line: 1 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_primary_text_disable_only_material_dark.xml | Line: 1 | CVSS: 9.4</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_primary_text_disable_only_material_light.xml | Line: 1 | CVSS: 9.4</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_primary_text_material_dark.xml | Line: 1 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_primary_text_material_light.xml | Line: 1 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">elected android **http://schemas.android.com/apk/res/android    selector item    �    � �� </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_search_url_text.xml | Line: 1 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_secondary_text_material_dark.xml | Line: 1 | CVSS: 9.7</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/abc_secondary_text_material_light.xml | Line: 1 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/switch_thumb_material_dark.xml | Line: 1 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">color android **http://schemas.android.com/apk/res/android    selector item �    � �  </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/color/switch_thumb_material_light.xml | Line: 1 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">gravity android **http://schemas.android.com/apk/res/android    class style view 55android.support.</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-sw600dp-v13/design_layout_snackbar.xml | Line: 1 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ibility android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/abc_alert_dialog_button_bar_material.xml | Line: 5 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">Padding android **http://schemas.android.com/apk/res/android     LinearLayout style  ImageView 33@sty</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/abc_alert_dialog_material.xml | Line: 9 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">_weight android **http://schemas.android.com/apk/res/android    99android.support.v7.internal.widget.FitW</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/abc_dialog_title_material.xml | Line: 5 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">lOffset android **http://schemas.android.com/apk/res/android     LinearLayout TextView style  Image</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/abc_search_view.xml | Line: 9 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">izontal android **http://schemas.android.com/apk/res/android    RelativeLayout TextView Button vi</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_access_control1.xml | Line: 3 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">t_below android **http://schemas.android.com/apk/res/android    RelativeLayout TextView  RadioGroup</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_access_control2.xml | Line: 3 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ibility android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_access_control3.xml | Line: 5 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ibility android **http://schemas.android.com/apk/res/android    RelativeLayout EditText Button  ac</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_access_control3_notes.xml | Line: 5 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ignment android **http://schemas.android.com/apk/res/android    RelativeLayout TextView � @   � �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_apicreds.xml | Line: 3 | CVSS: 9.7</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_apicreds2.xml | Line: 5 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_hardcode.xml | Line: 4 | CVSS: 9.4</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_hardcode2.xml | Line: 4 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_input_validation2_urischeme.xml | Line: 3 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">kground android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_input_validation3.xml | Line: 5 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_insecure_data_storage1.xml | Line: 3 | CVSS: 9.7</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_insecure_data_storage2.xml | Line: 3 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_insecure_data_storage3.xml | Line: 3 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_insecure_data_storage4.xml | Line: 3 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_log.xml | Line: 3 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/activity_sqlinjection.xml | Line: 3 | CVSS: 9.7</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/content_main.xml | Line: 3 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">xtColor android **http://schemas.android.com/apk/res/android    merge TextView style Button ?at</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/design_layout_snackbar_include.xml | Line: 5 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">xtStyle android **http://schemas.android.com/apk/res/android     LinearLayout TextView    � (   � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/notes_entry.xml | Line: 1 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">kground android **http://schemas.android.com/apk/res/android    RelativeLayout  ImageView layout i</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/notification_template_big_media.xml | Line: 3 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">kground android **http://schemas.android.com/apk/res/android    RelativeLayout  ImageView layout i</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/notification_template_big_media_narrow.xml | Line: 3 | CVSS: 9.4</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ngStart android **http://schemas.android.com/apk/res/android     LinearLayout TextView layout incl</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/notification_template_lines.xml | Line: 11 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">rginEnd android **http://schemas.android.com/apk/res/android     LinearLayout  ImageView layout inc</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/notification_template_media.xml | Line: 1 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ngStart android **http://schemas.android.com/apk/res/android     Chronometer   � 0   � 4 � � �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/notification_template_part_chronometer.xml | Line: 3 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ngStart android **http://schemas.android.com/apk/res/android     DateTimeView  � 0   � 4 � � �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/notification_template_part_time.xml | Line: 3 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">lipsize android **http://schemas.android.com/apk/res/android    CheckedTextView    � D   � � � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/select_dialog_multichoice_material.xml | Line: 3 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">lipsize android **http://schemas.android.com/apk/res/android    CheckedTextView    � D   � � � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v17/select_dialog_singlechoice_material.xml | Line: 3 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">theme android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v21/abc_screen_toolbar.xml | Line: 3 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout-v21/content_main.xml | Line: 3 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ibility android **http://schemas.android.com/apk/res/android    style  LinearLayout 66@style/RtlOverla</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_action_bar_title_item.xml | Line: 5 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">enabled android **http://schemas.android.com/apk/res/android     LinearLayout    �    � � � � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_action_bar_up_container.xml | Line: 3 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">_height android **http://schemas.android.com/apk/res/android    style  LinearLayout ?attr/actionBarT</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_action_bar_view_list_nav_layout.xml | Line: 1 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">xtColor android **http://schemas.android.com/apk/res/android    style 88android.support.v7.internal.vie</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_action_menu_item_layout.xml | Line: 3 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">gravity android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_action_menu_layout.xml | Line: 1 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">theme android **http://schemas.android.com/apk/res/android    style 77android.support.v7.internal.wid</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_action_mode_bar.xml | Line: 4 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">_height android **http://schemas.android.com/apk/res/android    style  ImageView  ?attr/actionModeClo</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_action_mode_close_item_material.xml | Line: 1 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">wBounds android **http://schemas.android.com/apk/res/android    class style view BBandroid.support.</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_activity_chooser_view.xml | Line: 3 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ingEdge android **http://schemas.android.com/apk/res/android     LinearLayout  ImageView TextView   �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_activity_chooser_view_list_item.xml | Line: 5 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ibility android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_alert_dialog_button_bar_material.xml | Line: 5 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">Padding android **http://schemas.android.com/apk/res/android     LinearLayout style  ImageView 33@sty</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_alert_dialog_material.xml | Line: 9 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">_weight android **http://schemas.android.com/apk/res/android    99android.support.v7.internal.widget.FitW</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_dialog_title_material.xml | Line: 5 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">_height android **http://schemas.android.com/apk/res/android    66android.support.v7.internal.view.menu.E</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_expanded_menu_layout.xml | Line: 1 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ntState android **http://schemas.android.com/apk/res/android    CheckBox    � $   � � � � � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_list_menu_item_checkbox.xml | Line: 1 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ntState android **http://schemas.android.com/apk/res/android     ImageView � 0   � � � � � �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_list_menu_item_icon.xml | Line: 1 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">t_below android **http://schemas.android.com/apk/res/android    66android.support.v7.internal.view.menu.L</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_list_menu_item_layout.xml | Line: 5 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ntState android **http://schemas.android.com/apk/res/android     RadioButton � $   � � � � � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_list_menu_item_radio.xml | Line: 1 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">t_below android **http://schemas.android.com/apk/res/android    style 66android.support.v7.internal.vie</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_popup_menu_item_layout.xml | Line: 5 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">eground android **http://schemas.android.com/apk/res/android    merge 55android.support.v7.internal.wid</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_screen_content_include.xml | Line: 4 | CVSS: 9.4</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">layout android **http://schemas.android.com/apk/res/android    99android.support.v7.internal.widget.FitW</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_screen_simple.xml | Line: 3 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">layout android **http://schemas.android.com/apk/res/android    88android.support.v7.internal.widget.FitW</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_screen_simple_overlay_action_mode.xml | Line: 3 | CVSS: 9.4</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">theme android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_screen_toolbar.xml | Line: 3 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">t_above android **http://schemas.android.com/apk/res/android    style RelativeLayout 22@style/RtlOver</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_search_dropdown_item_icons_2line.xml | Line: 7 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">lOffset android **http://schemas.android.com/apk/res/android     LinearLayout TextView style  Image</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_search_view.xml | Line: 9 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">Padding android **http://schemas.android.com/apk/res/android    style ListView  @style/Widget.AppCom</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/abc_select_dialog_material.xml | Line: 7 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">izontal android **http://schemas.android.com/apk/res/android    RelativeLayout TextView Button vi</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_access_control1.xml | Line: 3 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">t_below android **http://schemas.android.com/apk/res/android    RelativeLayout TextView  RadioGroup</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_access_control2.xml | Line: 3 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ibility android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_access_control3.xml | Line: 5 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ibility android **http://schemas.android.com/apk/res/android    RelativeLayout EditText Button  ac</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_access_control3_notes.xml | Line: 5 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">gravity android **http://schemas.android.com/apk/res/android    RelativeLayout TextView   � 8   � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_apicreds.xml | Line: 3 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_apicreds2.xml | Line: 5 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_hardcode.xml | Line: 3 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_hardcode2.xml | Line: 3 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_input_validation2_urischeme.xml | Line: 3 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">kground android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_input_validation3.xml | Line: 5 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_insecure_data_storage1.xml | Line: 3 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_insecure_data_storage2.xml | Line: 3 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_insecure_data_storage3.xml | Line: 3 | CVSS: 9.4</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_insecure_data_storage4.xml | Line: 3 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_log.xml | Line: 3 | CVSS: 9.4</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">upTheme android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_main.xml | Line: 5 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    RelativeLayout TextView EditText </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/activity_sqlinjection.xml | Line: 3 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">onClick android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/content_main.xml | Line: 3 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">gravity android **http://schemas.android.com/apk/res/android    class style view 55android.support.</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_layout_snackbar.xml | Line: 1 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">xtColor android **http://schemas.android.com/apk/res/android    merge TextView style Button ?at</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_layout_snackbar_include.xml | Line: 5 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">aleType android **http://schemas.android.com/apk/res/android     ImageView    �    � �   </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_layout_tab_icon.xml | Line: 1 | CVSS: 9.7</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">axLines android **http://schemas.android.com/apk/res/android    TextView    �    � � � � S</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_layout_tab_text.xml | Line: 1 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">_height android **http://schemas.android.com/apk/res/android     FrameLayout  �    � �      </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_menu_item_action_area.xml | Line: 1 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">eground android **http://schemas.android.com/apk/res/android    66android.support.design.internal.Navigat</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_navigation_item.xml | Line: 3 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">gBottom android **http://schemas.android.com/apk/res/android     LinearLayout  �    � � � � �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_navigation_item_header.xml | Line: 1 | CVSS: 9.3</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">kground android **http://schemas.android.com/apk/res/android     FrameLayout View  �    � � � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_navigation_item_separator.xml | Line: 3 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">xtColor android **http://schemas.android.com/apk/res/android    TextView  � (   � � � S� �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_navigation_item_subheader.xml | Line: 1 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">Manager android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_navigation_menu.xml | Line: 5 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">layout android **http://schemas.android.com/apk/res/android    merge CheckedTextView ViewStub    �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/design_navigation_menu_item.xml | Line: 3 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">xtStyle android **http://schemas.android.com/apk/res/android     LinearLayout TextView    � $   � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notes_entry.xml | Line: 1 | CVSS: 9.7</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">gravity android **http://schemas.android.com/apk/res/android    style  ImageButton ##?android:attr/bor</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notification_media_action.xml | Line: 1 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ibility android **http://schemas.android.com/apk/res/android    style  ImageButton ##?android:attr/bor</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notification_media_cancel_action.xml | Line: 3 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">kground android **http://schemas.android.com/apk/res/android    RelativeLayout  ImageView layout i</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notification_template_big_media.xml | Line: 3 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">kground android **http://schemas.android.com/apk/res/android    RelativeLayout  ImageView layout i</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notification_template_big_media_narrow.xml | Line: 3 | CVSS: 9.9</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ingLeft android **http://schemas.android.com/apk/res/android     LinearLayout TextView layout incl</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notification_template_lines.xml | Line: 11 | CVSS: 9.6</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">inRight android **http://schemas.android.com/apk/res/android     LinearLayout  ImageView layout inc</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notification_template_media.xml | Line: 1 | CVSS: 9.1</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ingLeft android **http://schemas.android.com/apk/res/android     Chronometer  � ,   � 4 � � �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notification_template_part_chronometer.xml | Line: 3 | CVSS: 9.8</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">ingLeft android **http://schemas.android.com/apk/res/android     DateTimeView � ,   � 4 � � �</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/notification_template_part_time.xml | Line: 3 | CVSS: 10.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">lipsize android **http://schemas.android.com/apk/res/android    TextView    � 0   � � � @4 </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/select_dialog_item_material.xml | Line: 1 | CVSS: 9.5</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">lipsize android **http://schemas.android.com/apk/res/android    CheckedTextView    � <   � � � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/select_dialog_multichoice_material.xml | Line: 1 | CVSS: 9.0</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">lipsize android **http://schemas.android.com/apk/res/android    CheckedTextView    � <   � � � </div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/select_dialog_singlechoice_material.xml | Line: 1 | CVSS: 9.7</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">lipsize android **http://schemas.android.com/apk/res/android    style TextView ?attr/spinnerDropDow</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/layout/support_simple_spinner_dropdown_item.xml | Line: 3 | CVSS: 9.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">sAction android **http://schemas.android.com/apk/res/android    app ''http://schemas.android.com/apk/re</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: res/menu/menu_main.xml | Line: 1 | CVSS: 9.3</p>
+</div>
+<div class="finding MEDIUM">
+  <span class="badge badge-MEDIUM">MEDIUM</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M1</span>
+  <strong>Implicit Intent Usage</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M1 category: Implicit Intent Usage.</p>
+  <div class="evidence">SystemWindows makeRestartActivityTask makeScaleUpAnimation makeSceneTransitionAnimation makeText makeThumbnailSca</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 19897 | CVSS: 5.6</p>
+</div>
+<div class="finding HIGH">
+  <span class="badge badge-HIGH">HIGH</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M2</span>
+  <strong>Data Written to External Storage</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M2 category: Data Written to External Storage.</p>
+  <div class="evidence">etExternalFilesDirs getExternalStorageDirectory getExternalStorageState getExtraLayoutSpace getExtras .getExtras() cal</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 16017 | CVSS: 8.2</p>
+</div>
+<div class="finding HIGH">
+  <span class="badge badge-HIGH">HIGH</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M2</span>
+  <strong>Unencrypted SQLite Database</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M2 category: Unencrypted SQLite Database.</p>
+  <div class="evidence">oid/database/sqlite/SQLiteDatabase$CursorFactory; (Landroid/database/sqlite/SQLiteDatabase; *Landroid/database/sql</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 7778 | CVSS: 8.2</p>
+</div>
+<div class="finding CRITICAL">
+  <span class="badge badge-CRITICAL">CRITICAL</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M3</span>
+  <strong>Cleartext HTTP Communication</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">The application transmits data over cleartext HTTP connections, exposing sensitive data to network eavesdropping.</p>
+  <div class="evidence">egister yourself at http://payatu.com to get your PIN and then login with that PIN! Remote error getting m</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Enforce HTTPS via network_security_config.xml. Set cleartextTrafficPermitted to false.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 11048 | CVSS: 9.5</p>
+</div>
+<div class="finding HIGH">
+  <span class="badge badge-HIGH">HIGH</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M6</span>
+  <strong>Path Traversal Vulnerability</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M6 category: Path Traversal Vulnerability.</p>
+  <div class="evidence">-- w:<M ix]x k,==...../. x.x.x.x.x.x.x.x. LCK= <----- <iiiii ZZZZZ Jiiiiiiii ---- <---- ZZZZ <-------x-</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 24753 | CVSS: 8.0</p>
+</div>
+<div class="finding MEDIUM">
+  <span class="badge badge-MEDIUM">MEDIUM</span>
+  <span class="badge" style="background:var(--accent2);color:#fff">M6</span>
+  <strong>Missing Permission Enforcement</strong>
+  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M6 category: Missing Permission Enforcement.</p>
+  <div class="evidence">OrSelfUriPermission checkCallingPermission checkChild checkCloseActionMenu checkDrawerViewAbsoluteGravity checkFor checkFo</div>
+  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 13946 | CVSS: 4.1</p>
+</div>
 <div class="finding CRITICAL">
   <span class="badge badge-CRITICAL">CRITICAL</span>
   <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
   <strong>SQL Injection via String Concatenation</strong>
   <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Raw SQL query constructed via string concatenation allows SQL injection by manipulating user input.</p>
-  <div class="evidence">db.rawQuery("SELECT * FROM users WHERE id='" + userId + "'")</div>
+  <div class="evidence">istView rawProgress rawQuery rawType rbregnow rccObj reachedEndOfMenu read readAction readAndroidTheme readA</div>
   <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Use parameterized queries: db.rawQuery("SELECT * FROM users WHERE id=?", new String[]{userId})</p>
-  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: AndroidManifest.xml | Line: 166 | CVSS: 9.5</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 21532 | CVSS: 9.7</p>
 </div>
 <div class="finding CRITICAL">
   <span class="badge badge-CRITICAL">CRITICAL</span>
   <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
   <strong>WebView JavaScript Enabled</strong>
   <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">WebView has JavaScript enabled with addJavascriptInterface, creating a Remote Code Execution attack surface.</p>
-  <div class="evidence">webView.addJavascriptInterface(new WebAppInterface(this), "Android");</div>
+  <div class="evidence">wCacheSize setItems setJavaScriptEnabled setLabel setLabelFor setLabeledBy setLargeIcon setLastChildRect setLastIn setLa</div>
   <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Disable JavaScript unless required. Use @JavascriptInterface annotation with input validation.</p>
-  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: ApiClient.java | Line: 410 | CVSS: 9.6</p>
-</div>
-<div class="finding CRITICAL">
-  <span class="badge badge-CRITICAL">CRITICAL</span>
-  <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
-  <strong>SQL Injection via String Concatenation</strong>
-  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Raw SQL query constructed via string concatenation allows SQL injection by manipulating user input.</p>
-  <div class="evidence">db.rawQuery("SELECT * FROM users WHERE id='" + userId + "'")</div>
-  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Use parameterized queries: db.rawQuery("SELECT * FROM users WHERE id=?", new String[]{userId})</p>
-  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: NetworkManager.java | Line: 202 | CVSS: 9.5</p>
-</div>
-<div class="finding CRITICAL">
-  <span class="badge badge-CRITICAL">CRITICAL</span>
-  <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
-  <strong>WebView JavaScript Enabled</strong>
-  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">WebView has JavaScript enabled with addJavascriptInterface, creating a Remote Code Execution attack surface.</p>
-  <div class="evidence">webView.addJavascriptInterface(new WebAppInterface(this), "Android");</div>
-  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Disable JavaScript unless required. Use @JavascriptInterface annotation with input validation.</p>
-  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: UserRepository.java | Line: 13 | CVSS: 9.9</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 22675 | CVSS: 10.0</p>
 </div>
 <div class="finding HIGH">
   <span class="badge badge-HIGH">HIGH</span>
   <span class="badge" style="background:var(--accent2);color:#fff">M7</span>
   <strong>Unvalidated Intent Extra Data</strong>
   <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M7 category: Unvalidated Intent Extra Data.</p>
-  <div class="evidence">Pattern matched in decompiled source. See full evidence in detailed report.</div>
+  <div class="evidence">getInt getIntArray getIntExtra getInteger getIntegerInstance getIntent getIntentCount getIntents getInterfaceD</div>
   <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
-  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: SettingsActivity.java | Line: 227 | CVSS: 8.4</p>
-</div>
-<div class="finding HIGH">
-  <span class="badge badge-HIGH">HIGH</span>
-  <span class="badge" style="background:var(--accent2);color:#fff">M1</span>
-  <strong>Exported Activity without Permission</strong>
-  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Activity is exported without permission restriction, allowing any app to launch it directly.</p>
-  <div class="evidence"><activity android:name=".AdminActivity" android:exported="true"/></div>
-  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Add android:permission attribute or set exported=false if not needed externally.</p>
-  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: StorageManager.java | Line: 130 | CVSS: 7.4</p>
-</div>
-<div class="finding HIGH">
-  <span class="badge badge-HIGH">HIGH</span>
-  <span class="badge" style="background:var(--accent2);color:#fff">M1</span>
-  <strong>Unvalidated Deep Link Handler</strong>
-  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M1 category: Unvalidated Deep Link Handler.</p>
-  <div class="evidence">Pattern matched in decompiled source. See full evidence in detailed report.</div>
-  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
-  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: MainActivity.java | Line: 257 | CVSS: 7.7</p>
-</div>
-<div class="finding MEDIUM">
-  <span class="badge badge-MEDIUM">MEDIUM</span>
-  <span class="badge" style="background:var(--accent2);color:#fff">M10</span>
-  <strong>Debug Code in Production Build</strong>
-  <p style="color:var(--muted);margin:6px 0;font-size:0.85rem">Vulnerability detected matching OWASP M10 category: Debug Code in Production Build.</p>
-  <div class="evidence">Pattern matched in decompiled source. See full evidence in detailed report.</div>
-  <p style="margin-top:8px;font-size:0.82rem"><strong style="color:var(--green)">&#10003; Fix:</strong> Follow OWASP Mobile Top 10 guidelines and apply principle of least privilege.</p>
-  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: StorageManager.java | Line: 420 | CVSS: 5.1</p>
+  <p style="font-size:0.78rem;color:var(--muted);margin-top:4px">File: classes.dex | Line: 16124 | CVSS: 8.0</p>
 </div>
 
 

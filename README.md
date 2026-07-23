@@ -1,233 +1,220 @@
-# MPF – Mobile Penetration Testing Framework
+# MPF – Mobile Penetration Testing & Reverse-Engineering Framework
 
-**Version:** 2.0.0 | **OWASP-Aligned** | **Android Security Assessment Platform**
+**Version:** 2.0.0 | **OWASP-Aligned** | **Android Security & Static Analysis Platform**
 
-> B.Tech Final Year Research Project | Educational Use Only
+> Educational & Authorised Research Use Only
 
 ---
 
 ## Overview
 
-MPF is a comprehensive, **Metasploit-inspired** security validation platform for Android application security assessment. It addresses the critical fragmentation problem in mobile security testing by providing a unified framework combining:
+**MPF (Mobile Penetration Testing Framework)** is an end-to-end security validation and reverse-engineering platform for Android applications. It bridges the gap between static analysis, runtime behaviour inspection, compliance auditing, and vulnerability validation by offering both a **modern web-based Reverse-Engineering IDE** and a **Metasploit-inspired CLI engine**.
 
-- **Static Analysis** – APK decompilation and code scanning
-- **Dynamic Analysis** – ADB-based runtime behaviour analysis
-- **Exploit Modules** – 9 exploit modules for common Android vulnerabilities
-- **Payload System** – 13 payload modules (simulation/evidence-only)
-- **OWASP Compliance** – 100% Mobile Top 10 coverage with automated scoring
-- **Attack Chain Reasoning** – Automated multi-step vulnerability correlation
-- **Report Generation** – JSON, HTML, and PDF compliance reports
+### Dual Interface Architecture
+1. **Web IDE & Full-Stack Platform**: A web application featuring decompilation pipelines, interactive file tree navigation, Monaco code editing, component analysis, domain intelligence, and compliance report generation.
+2. **CLI Engine (`mpf/`)**: A command-line interface with 24 security modules for testing vulnerability mechanics, attack chains, and payload simulations.
+
+---
+
+## Key Features
+
+- **Full-Stack Static Analysis IDE**:
+  - **Decompilation Pipeline**: Multi-phase APK disassembly using Jadx and Apktool via asynchronous Celery background workers.
+  - **Interactive File Explorer**: Full directory tree navigation with syntax highlighting powered by Monaco Editor.
+  - **Component Inspector**: Deep analysis of Android Activities, Services, Broadcast Receivers, and Content Providers.
+  - **Security & Compliance Dashboards**:
+    - **Manifest & Permission Risk Analysis**: Identification of abused and dangerous permissions.
+    - **APKID & Compiler Detection**: Detection of packers, obfuscators, and compilers.
+    - **Certificate & Signing Inspector**: Analysis of signatures, keystore integrity, and certificate validity.
+    - **Domain Intelligence & Firebase Check**: Discovery of embedded endpoints, misconfigured Firebase databases, and hardcoded secrets.
+    - **Malware & Threat Lookup**: Automated lookup and risk scoring against known malware patterns.
+    - **Software Bill of Materials (SBOM)**: Dependency tracking, library vulnerability detection, and licence auditing.
+
+- **CLI Engine & Vulnerability Verification**:
+  - **Exploit Modules (9)**: Simulators for WebViews, SQL injections, IPC bypasses, Intent hijacking, Tapjacking, etc.
+  - **Payload Modules (13)**: Evidence-gathering payload simulation modules.
+  - **OWASP Mobile Top 10 Coverage**: 100% mapping (M1–M10) with automated risk scoring.
+  - **Attack Chain Reasoning**: Automated multi-step vulnerability correlation engine.
+  - **Multi-Format Reporting**: Automated JSON, HTML, and PDF compliance report generation.
+
+---
+
+## Project Structure
+
+```
+mpf/
+├── backend/                    # FastAPI backend & Celery worker service
+│   ├── app/
+│   │   ├── api/v1/             # REST API endpoints (analysis, security, files, intel)
+│   │   ├── core/               # Configuration & logging settings
+│   │   ├── db/                 # Database models & SQLAlchemy sessions
+│   │   ├── services/           # Decompilation, parsing & security analysis engines
+│   │   └── workers/            # Celery asynchronous task queues
+│   ├── alembic/                # Database migration scripts
+│   ├── Dockerfile              # Container definition for backend/worker
+│   └── requirements.txt        # Python backend dependencies
+├── frontend/                   # React + TypeScript + Vite Web IDE
+│   ├── src/
+│   │   ├── components/         # Navigation, layout, and UI components
+│   │   ├── pages/              # Security analysis views & dashboards
+│   │   └── api/                # API client hooks & query integration
+│   ├── package.json            # Node dependencies & scripts
+│   └── vite.config.ts          # Vite build configuration
+├── mpf/                        # Metasploit-inspired CLI engine (Ruby)
+│   ├── mpf.rb                  # Main CLI entrypoint
+│   ├── core/                   # Framework engine & dispatcher
+│   ├── engines/                # Static analyzer & OWASP engine
+│   └── modules/                # Exploit, payload & auxiliary modules
+├── storage/                    # Persistent artifact store for decompiled APKs
+├── docker-compose.yml          # Multi-container orchestrator (Postgres, Redis, Backend, Worker)
+├── install.sh                  # One-command dependency setup script
+├── start.sh                    # All-in-one local launcher script
+└── README.md                   # Project documentation
+```
+
+---
+
+## Tech Stack
+
+### Web Platform
+- **Backend Framework**: FastAPI (Python 3.11+)
+- **Async Task Broker**: Celery + Redis 7
+- **Database**: PostgreSQL 16 (or SQLite for development)
+- **ORMs & Migrations**: SQLAlchemy 2.0 + Alembic
+- **Frontend Framework**: React 18, TypeScript, Vite
+- **Code Viewer**: Monaco Editor (`@monaco-editor/react`)
+- **State & Data Fetching**: TanStack React Query v5
+- **Decompilation Tools**: Jadx, Apktool, `lxml`, `defusedxml`
+
+### CLI Engine
+- **Language**: Ruby 2.7+
+- **CLI Interface**: Readline (stdlib)
+- **Parsing**: REXML (stdlib)
 
 ---
 
 ## Quick Start
 
-```bash
-# Prerequisites
-# Ruby 2.7+, apktool, adb (Android Debug Bridge)
+### 1. Web IDE & Full-Stack Platform Setup
 
-# Run the framework
+#### Prerequisites
+- Docker & Docker Compose
+- Python 3.10+
+- Node.js 18+ & npm
+
+#### Automatic Installation & Launch
+Run the installation script to prepare dependencies, start database containers, and run migrations:
+
+```bash
+# Clone the repository
+git clone https://github.com/dozikim/mpf.git
+cd mpf
+
+# Install dependencies and setup environment
+./install.sh
+
+# Launch all services (Postgres, Redis, FastAPI, Celery, React Frontend)
+./start.sh
+```
+
+Once started, access the interfaces at:
+- **Web IDE (Frontend)**: [http://localhost:5173](http://localhost:5173)
+- **Backend REST API**: [http://localhost:8000](http://localhost:8000)
+- **Interactive Swagger Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
+
+#### Docker Compose Launch (Alternative)
+You can also launch the full backend stack via Docker:
+
+```bash
+docker compose up --build -d
+```
+
+---
+
+### 2. CLI Engine Setup (Legacy / Terminal Mode)
+
+To run the interactive Metasploit-like CLI interface:
+
+```bash
+# Ensure Ruby 2.7+, apktool, and adb are installed
+cd mpf
+
+# Launch the interactive CLI
 ruby mpf.rb
 
-# Inside the MPF CLI:
+# Inside the MPF CLI shell:
+mpf > analyze /path/to/target.apk
 mpf > use exploits/android/webview_rce
-mpf exploit(webview_rce) > set TARGET /path/to/app.apk
+mpf exploit(webview_rce) > set TARGET /path/to/target.apk
 mpf exploit(webview_rce) > run
-
-# Full analysis pipeline:
-mpf > analyze /path/to/app.apk
 mpf > report generate
 ```
 
 ---
 
-## Directory Structure
-
-```
-mpf/
-├── mpf.rb                      # Main entry point
-├── core/
-│   ├── framework.rb            # Module registry & orchestration
-│   ├── session.rb              # Session state management
-│   └── dispatcher.rb           # Module execution engine
-├── engines/
-│   ├── static_analyzer.rb      # 6-phase APK analysis engine
-│   ├── owasp_engine.rb         # OWASP Mobile Top 10 compliance engine
-│   └── chain_reasoner.rb       # Attack chain reasoning engine
-├── modules/
-│   ├── exploits/               # 9 exploit modules
-│   │   ├── sql_injection.rb
-│   │   ├── webview_rce.rb
-│   │   ├── ipc_bypass.rb
-│   │   ├── intent_hijacking.rb
-│   │   ├── deeplink_injection.rb
-│   │   ├── broadcast_receiver_exploit.rb
-│   │   ├── clipboard_hijack.rb
-│   │   ├── fragment_injection.rb
-│   │   └── tapjacking.rb
-│   ├── payloads/               # 13 payload modules
-│   │   ├── data_exfiltration.rb
-│   │   ├── reverse_shell.rb
-│   │   ├── persistence_agent.rb
-│   │   ├── keylogger.rb
-│   │   ├── screen_capture.rb
-│   │   ├── gps_tracker.rb
-│   │   ├── contact_harvester.rb
-│   │   ├── sms_interceptor.rb
-│   │   ├── clipboard_spy.rb
-│   │   ├── credential_stealer.rb
-│   │   ├── token_extractor.rb
-│   │   ├── log_injector.rb
-│   │   └── broadcast_spoofer.rb
-│   └── auxiliary/              # 2 auxiliary modules
-│       ├── apk_info_scanner.rb
-│       └── permission_analyzer.rb
-├── reporters/
-│   ├── json_reporter.rb        # JSON compliance report generator
-│   └── html_reporter.rb        # Interactive HTML report generator
-├── cli/
-│   ├── banner.rb               # MPF ASCII banner
-│   └── commander.rb            # REPL command processor
-├── config/
-│   └── owasp_rules.yml         # OWASP rules & compatibility matrix
-├── docs/
-│   └── USAGE.md                # Detailed usage documentation
-├── reports/                    # Generated reports (JSON, HTML)
-└── test_apps/                  # Sample vulnerable APK descriptors
-```
-
----
-
-## Module Inventory
+## Module Inventory & OWASP Alignment
 
 ### Exploit Modules (9)
 
-| Module | OWASP | Severity |
-|--------|-------|----------|
-| sql_injection | M2, M7 | CRITICAL |
-| webview_rce | M1, M7 | CRITICAL |
-| ipc_bypass | M1 | HIGH |
-| intent_hijacking | M1 | HIGH |
-| deeplink_injection | M1, M7 | HIGH |
-| broadcast_receiver_exploit | M1 | HIGH |
-| fragment_injection | M1, M4 | HIGH |
-| clipboard_hijack | M2 | MEDIUM |
-| tapjacking | M1 | MEDIUM |
+| Module | OWASP Mapping | Severity | Description |
+|--------|---------------|----------|-------------|
+| `sql_injection` | M2, M7 | CRITICAL | Identifies vulnerable content providers and SQLite queries |
+| `webview_rce` | M1, M7 | CRITICAL | Detects insecure `addJavascriptInterface` exposures |
+| `ipc_bypass` | M1 | HIGH | Identifies unprotected exported components |
+| `intent_hijacking` | M1 | HIGH | Tests implicit intent vulnerabilities |
+| `deeplink_injection` | M1, M7 | HIGH | Evaluates unvalidated deep link schemes |
+| `broadcast_receiver_exploit` | M1 | HIGH | Audits unprotected broadcast receivers |
+| `fragment_injection` | M1, M4 | HIGH | Audits preference activity fragment injection |
+| `clipboard_hijack` | M2 | MEDIUM | Detects sensitive data leaks to global clipboard |
+| `tapjacking` | M1 | MEDIUM | Tests overlay vulnerability exposure |
 
 ### Payload Modules (13)
 
-| Module | OWASP | Severity |
-|--------|-------|----------|
-| data_exfiltration | M2 | CRITICAL |
-| reverse_shell | M1 | CRITICAL |
-| keylogger | M2, M4 | CRITICAL |
-| sms_interceptor | M2 | CRITICAL |
-| credential_stealer | M2, M4 | CRITICAL |
-| persistence_agent | M8 | HIGH |
-| contact_harvester | M2 | HIGH |
-| token_extractor | M4, M5 | HIGH |
-| screen_capture | M2 | HIGH |
-| gps_tracker | M2 | MEDIUM |
-| clipboard_spy | M2 | MEDIUM |
-| log_injector | M7 | MEDIUM |
-| broadcast_spoofer | M1 | MEDIUM |
+| Module | OWASP Mapping | Severity | Description |
+|--------|---------------|----------|-------------|
+| `data_exfiltration` | M2 | CRITICAL | Simulates sensitive data exfiltration |
+| `reverse_shell` | M1 | CRITICAL | Terminal shell connectivity simulation |
+| `keylogger` | M2, M4 | CRITICAL | Keystroke interception simulation |
+| `sms_interceptor` | M2 | CRITICAL | SMS message capture simulation |
+| `credential_stealer` | M2, M4 | CRITICAL | Account token/credential harvesting simulation |
+| `persistence_agent` | M8 | HIGH | Boot receiver persistence verification |
+| `contact_harvester` | M2 | HIGH | Address book exposure simulation |
+| `token_extractor` | M4, M5 | HIGH | Auth token discovery in storage/logs |
+| `screen_capture` | M2 | HIGH | Surface capture permission testing |
+| `gps_tracker` | M2 | MEDIUM | Location tracking data access simulation |
+| `clipboard_spy` | M2 | MEDIUM | Background clipboard read simulation |
+| `log_injector` | M7 | MEDIUM | Logcat data pollution check |
+| `broadcast_spoofer` | M1 | MEDIUM | System broadcast event spoofing test |
 
-### Auxiliary Modules (2)
+### OWASP Mobile Top 10 (100% Coverage)
 
-| Module | Purpose |
-|--------|---------|
-| apk_info_scanner | APK metadata extraction |
-| permission_analyzer | Permission risk analysis |
-
----
-
-## OWASP Mobile Top 10 Coverage
-
-| Category | Name | Covered |
-|----------|------|---------|
-| M1 | Improper Platform Usage | ✅ |
-| M2 | Insecure Data Storage | ✅ |
-| M3 | Insecure Communication | ✅ |
-| M4 | Insecure Authentication | ✅ |
-| M5 | Insufficient Cryptography | ✅ |
-| M6 | Insecure Authorization | ✅ |
-| M7 | Client Code Quality | ✅ |
-| M8 | Code Tampering | ✅ |
-| M9 | Reverse Engineering | ✅ |
-| M10 | Extraneous Functionality | ✅ |
-
-**Coverage: 100% (10/10)**
-
----
-
-## CLI Commands
-
-```
-use <module>            Load an exploit, payload, or auxiliary module
-set <OPTION> <value>    Set a module option
-show [options|modules|payloads|auxiliary|all]
-run / exploit           Execute the loaded module
-analyze <apk>           Run full 6-phase analysis pipeline
-report generate         Generate JSON + HTML compliance reports
-search <term>           Search available modules
-info                    Show info on current module
-back                    Unload current module
-help                    Show help
-exit / quit             Exit MPF
-```
-
----
-
-## Framework Statistics
-
-- **Lines of Code:** 8,000+ (production Ruby)
-- **Total Modules:** 24
-- **Detection Rules:** 26 (OWASP M1–M10)
-- **Vulnerability Types:** 50+
-- **Report Formats:** JSON, HTML, PDF
-- **Android API Support:** 21–34 (Android 5.0 – 14.0)
-
----
-
-## Experimental Results
-
-| Application | Vulnerabilities | Detected | Rate |
-|-------------|----------------|----------|------|
-| DIVA | 13 | 13 | 100% |
-| FakeBank | 8 | 8 | 100% |
-| Hackway | 10 | 9 | 90% |
-
-**Average Detection Rate: 96.7%**
+| Category | Vulnerability Name | Status |
+|----------|-------------------|--------|
+| **M1** | Improper Platform Usage | ✅ Covered |
+| **M2** | Insecure Data Storage | ✅ Covered |
+| **M3** | Insecure Communication | ✅ Covered |
+| **M4** | Insecure Authentication | ✅ Covered |
+| **M5** | Insufficient Cryptography | ✅ Covered |
+| **M6** | Insecure Authorization | ✅ Covered |
+| **M7** | Client Code Quality | ✅ Covered |
+| **M8** | Code Tampering | ✅ Covered |
+| **M9** | Reverse Engineering | ✅ Covered |
+| **M10** | Extraneous Functionality | ✅ Covered |
 
 ---
 
 ## Safety & Ethics
 
-All exploit and payload modules operate in **safe/simulation mode**:
-- No persistent changes made to target systems
-- Evidence collected only — no actual exploitation
-- Full audit log maintained per session
-- Designed for authorised security assessments only
+All modules within MPF run strictly in **simulation and audit mode**:
+- **Non-Destructive**: No persistent unauthorized alterations to target systems.
+- **Evidence-Driven**: Focuses on evidence collection, static pattern matching, and compliance validation.
+- **Audit Logging**: Comprehensive activity logs maintained for session tracking.
 
-> ⚠️ **LEGAL WARNING:** Use MPF only on applications you own or have explicit written authorisation to test. Unauthorised testing is illegal.
-
----
-
-## Technology Stack
-
-- **Language:** Ruby 2.7+
-- **APK Decompilation:** apktool
-- **Android Bridge:** ADB (Android Debug Bridge)
-- **XML Parsing:** REXML (stdlib)
-- **CLI Interface:** Readline (stdlib)
-- **Report Formats:** JSON, HTML, PDF
+> ⚠️ **LEGAL DISCLAIMER**: MPF is designed exclusively for educational purposes and authorized security assessments. Operating MPF against targets without prior written permission is illegal and strictly prohibited.
 
 ---
 
 ## License
 
-Educational and Research Use Only. See LICENSE file.
+Educational and Research Use Only. See the `LICENSE` file for details.
 
----
-
-*MPF – Mobile Penetration Testing Framework v2.0.0 | B.Tech Final Year Project | March 2026*

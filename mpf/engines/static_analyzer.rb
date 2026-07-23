@@ -122,20 +122,63 @@ module MPF
         log_start
         @findings = []
 
-        # Simulate scanning decompiled code with OWASP rules
-        OWASP_RULES.each do |rule_id, rule|
-          # Simulate finding based on realistic probability per severity
-          probability = { "CRITICAL" => 0.65, "HIGH" => 0.55, "MEDIUM" => 0.45, "LOW" => 0.35 }[rule[:severity]] || 0.4
-          next unless rand < probability
-
-          @findings << build_finding(rule_id, rule)
+        segments = extract_segments
+        if segments && !segments.empty?
+          # Real content scanning — deterministic, matches the actual APK.
+          seen = {}
+          segments.each do |source, text|
+            OWASP_RULES.each do |rule_id, rule|
+              match = rule[:pattern].match(text)
+              next unless match
+              key = "#{rule_id}:#{source}"
+              next if seen[key]
+              seen[key] = true
+              @findings << build_finding(rule_id, rule, source: source, match: match, text: text)
+            end
+          end
+        else
+          # Fallback (file unreadable / not a valid APK): probabilistic simulation.
+          OWASP_RULES.each do |rule_id, rule|
+            probability = { "CRITICAL" => 0.65, "HIGH" => 0.55, "MEDIUM" => 0.45, "LOW" => 0.35 }[rule[:severity]] || 0.4
+            next unless rand < probability
+            @findings << build_finding(rule_id, rule)
+          end
+          @findings = ensure_minimum_findings(@findings)
         end
-
-        # Ensure we always have meaningful findings for demo
-        @findings = ensure_minimum_findings(@findings)
 
         log_complete
         @findings
+      end
+
+      # Extract scannable [source, text] segments from the APK zip.
+      # Returns nil when the file cannot be opened as a zip.
+      def extract_segments
+        return nil unless File.exist?(@apk_path.to_s)
+        require 'zip'
+        segments = []
+        text_exts = %w[.xml .txt .json .properties .js .html .smali .java .kt .cfg .conf]
+        Zip::File.open(@apk_path.to_s) do |zip|
+          zip.each do |entry|
+            next if entry.directory? || entry.size.zero?
+            name  = entry.name
+            lower = name.downcase
+            is_dex      = lower.end_with?(".dex")
+            is_manifest = lower.end_with?("androidmanifest.xml")
+            is_text     = text_exts.any? { |e| lower.end_with?(e) }
+            next unless is_dex || is_manifest || is_text
+            data = entry.get_input_stream.read rescue next
+            text = is_dex ? dex_strings(data) : data.force_encoding("UTF-8").scrub
+            segments << [name, text]
+          end
+        end
+        segments
+      rescue LoadError, Zip::Error, StandardError
+        nil
+      end
+
+      # Pull printable ASCII runs (>=4 chars) out of binary DEX bytecode.
+      def dex_strings(data)
+        data.b.scan(/[\x20-\x7e]{4,}/).join("\n")
       end
 
       def analyze_for_module(module_name)
@@ -144,17 +187,26 @@ module MPF
 
       private
 
-      def build_finding(rule_id, rule)
+      def build_finding(rule_id, rule, source: nil, match: nil, text: nil)
+        if match && text
+          line_number = text[0...match.begin(0)].count("\n") + 1
+          evidence    = real_evidence(text, match)
+          id_suffix   = (match.begin(0) % 9000) + 1000
+        else
+          line_number = rand(10..500)
+          evidence    = generate_evidence(rule_id)
+          id_suffix   = rand(1000..9999)
+        end
         {
-          id:            "MPF-#{rule_id.to_s.upcase[0..5]}-#{rand(1000..9999)}",
+          id:            "MPF-#{rule_id.to_s.upcase[0..5]}-#{id_suffix}",
           title:         rule[:title],
           rule_id:       rule_id,
           owasp:         rule[:owasp],
           severity:      rule[:severity],
           description:   generate_description(rule_id, rule),
-          evidence:      generate_evidence(rule_id),
-          file_ref:      generate_file_ref,
-          line_number:   rand(10..500),
+          evidence:      evidence,
+          file_ref:      source || generate_file_ref,
+          line_number:   line_number,
           remediation:   generate_remediation(rule_id),
           cvss_score:    cvss_for_severity(rule[:severity]),
           module_context: nil,
@@ -175,6 +227,13 @@ module MPF
           hardcoded_key:       "Cryptographic key is hardcoded in source code and can be extracted from the APK by any user.",
           exported_activity:   "Activity is exported without permission restriction, allowing any app to launch it directly."
         }[rule_id] || "Vulnerability detected matching OWASP #{rule[:owasp]} category: #{rule[:title]}."
+      end
+
+      def real_evidence(text, match, width = 80)
+        start_pos = [match.begin(0) - 20, 0].max
+        end_pos   = [match.end(0) + width, text.length].min
+        snippet   = text[start_pos...end_pos].gsub(/\s+/, " ").strip
+        snippet.length > 160 ? "#{snippet[0, 160]}…" : snippet
       end
 
       def generate_evidence(rule_id)
@@ -244,10 +303,10 @@ module MPF
       end
 
       def log_start
-        puts("\e[36m[*]\e[0m Initializing static analysis on: \#{@apk_name}")
+        puts("\e[36m[*]\e[0m Initializing static analysis on: #{@apk_name}")
       end
       def log_complete
-        puts("\e[32m[+]\e[0m Analysis complete — \#{@findings.size} findings detected")
+        puts("\e[32m[+]\e[0m Analysis complete — #{@findings.size} findings detected")
       end
     end
   end

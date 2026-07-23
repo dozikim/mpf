@@ -1,0 +1,26 @@
+# --- MPF backend (FastAPI static-analysis platform) ---
+# Pinned to the versions verified present in the target environment.
+
+fastapi==0.135.3
+uvicorn[standard]==0.38.0
+pydantic==2.13.4
+pydantic-settings==2.7.1
+
+# --- persistence ---
+SQLAlchemy==2.0.48
+alembic==1.18.4
+psycopg[binary]==3.2.3          # PostgreSQL driver (psycopg3)
+
+# --- async task queue / cache ---
+celery==5.6.3
+redis==6.4.0
+
+# --- utilities ---
+python-multipart==0.0.20        # multipart upload parsing
+lxml==5.3.0                     # fast/robust XML (manifest) handling
+defusedxml==0.7.1               # safe XML parsing (XXE-proof)
+
+# --- test / dev ---
+pytest==8.3.4
+pytest-asyncio==0.25.2
+httpx==0.28.1                   # FastAPI TestClient transport

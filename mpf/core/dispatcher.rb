@@ -97,10 +97,10 @@ module MPF
       end
 
       def log_info(msg)
-        puts("\e[36m[*]\e[0m \#{msg}")
+        puts("\e[36m[*]\e[0m #{msg}")
       end
       def log_phase(msg)
-        puts("\n\e[35m[PHASE]\e[0m \#{msg}")
+        puts("\n\e[35m[PHASE]\e[0m #{msg}")
       end
       def error(msg)
         { status: "error", message: msg }
