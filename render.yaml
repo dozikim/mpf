@@ -8,21 +8,21 @@ services:
     runtime: docker
     dockerfilePath: backend/Dockerfile
     dockerContext: backend
+    dockerCommand: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: MPF_DATABASE_URL
         fromDatabase:
           name: mpf-postgres
           property: connectionString
       - key: MPF_REDIS_URL
-        fromKeyStore:
-          type: key-store
+        fromService:
+          type: redis
           name: mpf-redis
           property: connectionString
       - key: MPF_STORAGE_ROOT
         value: /data/storage
       - key: MPF_CORS_ORIGINS
         value: '["*"]'
-    startCommand: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
     healthCheckPath: /health
 
   # 2. Celery Worker Service
@@ -31,19 +31,19 @@ services:
     runtime: docker
     dockerfilePath: backend/Dockerfile
     dockerContext: backend
+    dockerCommand: celery -A app.workers.celery_app.celery worker --loglevel=info --concurrency=2
     envVars:
       - key: MPF_DATABASE_URL
         fromDatabase:
           name: mpf-postgres
           property: connectionString
       - key: MPF_REDIS_URL
-        fromKeyStore:
-          type: key-store
+        fromService:
+          type: redis
           name: mpf-redis
           property: connectionString
       - key: MPF_STORAGE_ROOT
         value: /data/storage
-    startCommand: celery -A app.workers.celery_app.celery worker --loglevel=info --concurrency=2
 
   # 3. Frontend Static Site
   - type: web
@@ -56,7 +56,7 @@ services:
         fromService:
           type: web
           name: mpf-backend
-          property: url
+          property: host
     routes:
       - type: rewrite
         source: /*
@@ -67,5 +67,8 @@ databases:
     databaseName: mpf
     user: mpf
 
-keyStores:
-  - name: mpf-redis
+services:
+  # Redis key-value store for Celery task broker
+  - type: redis
+    name: mpf-redis
+    ipAllowList: []

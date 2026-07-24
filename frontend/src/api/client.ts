@@ -31,7 +31,11 @@ import type {
   TreeNode,
 } from "./types";
 
-const BASE = (import.meta.env.VITE_API_BASE_URL || "") + "/api/v1";
+let apiBase = import.meta.env.VITE_API_BASE_URL || "";
+if (apiBase && !apiBase.startsWith("http://") && !apiBase.startsWith("https://")) {
+  apiBase = `https://${apiBase}`;
+}
+const BASE = apiBase + "/api/v1";
 
 export class ApiError extends Error {
   status: number;
