@@ -6,14 +6,13 @@ services:
     dockerfilePath: backend/Dockerfile
     dockerContext: backend
 
+    healthCheckPath: /health
+
     envVars:
       - key: MPF_DATABASE_URL
         fromDatabase:
           name: mpf-postgres
           property: connectionString
-
-      # Add this manually in the Render dashboard after creating Redis
-      # MPF_REDIS_URL=redis://...
 
       - key: MPF_STORAGE_ROOT
         value: /tmp/storage
@@ -24,39 +23,16 @@ services:
       - key: MPF_CORS_ORIGINS
         value: '["https://mpf-frontend.onrender.com"]'
 
-    healthCheckPath: /health
-
-  # Worker
-  - type: worker
-    name: mpf-worker
-    runtime: docker
-    dockerfilePath: backend/Dockerfile
-    dockerContext: backend
-
-    envVars:
-      - key: MPF_DATABASE_URL
-        fromDatabase:
-          name: mpf-postgres
-          property: connectionString
-
-      # Add manually in Render
-      # MPF_REDIS_URL=redis://...
-
-      - key: MPF_STORAGE_ROOT
-        value: /tmp/storage
-
-      - key: MPF_ENVIRONMENT
-        value: production
-
   # Frontend
-  - type: static
+  - type: web
     name: mpf-frontend
+    runtime: static
 
     rootDir: frontend
 
     buildCommand: npm install && npm run build
 
-    publishPath: dist
+    staticPublishPath: dist
 
 databases:
   - name: mpf-postgres
