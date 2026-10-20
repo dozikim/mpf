@@ -1,13 +1,20 @@
 # =============================================================================
 # MPF OWASP Compliance Engine – 100% Mobile Top 10 Mapping
+#
+# Category names/weights and severity weights load from
+# mpf/config/owasp_rules.yml when it is present and parseable; otherwise the
+# built-in defaults (identical to the file) are used.
 # =============================================================================
 
 require 'time'
+require 'yaml'
 
 module MPF
   module Engines
     class OWASPEngine
-      OWASP_CATEGORIES = {
+      CONFIG_PATH = File.expand_path('../config/owasp_rules.yml', __dir__)
+
+      BUILT_IN_CATEGORIES = {
         "M1"  => { name: "Improper Platform Usage",     weight: 1.0 },
         "M2"  => { name: "Insecure Data Storage",       weight: 1.0 },
         "M3"  => { name: "Insecure Communication",      weight: 0.9 },
@@ -17,10 +24,42 @@ module MPF
         "M7"  => { name: "Client Code Quality",         weight: 0.7 },
         "M8"  => { name: "Code Tampering",              weight: 0.6 },
         "M9"  => { name: "Reverse Engineering",         weight: 0.5 },
-        "M10" => { name: "Extraneous Functionality",    weight: 0.4 }
+        "M10" => { name: "Extraneous Functionality",   weight: 0.4 }
       }.freeze
 
-      SEVERITY_WEIGHTS = { "CRITICAL" => 10, "HIGH" => 7, "MEDIUM" => 4, "LOW" => 1 }.freeze
+      BUILT_IN_SEVERITY_WEIGHTS = { "CRITICAL" => 10, "HIGH" => 7, "MEDIUM" => 4, "LOW" => 1 }.freeze
+
+      def self.load_config_section(key)
+        return nil unless File.exist?(CONFIG_PATH)
+        raw = YAML.safe_load(File.read(CONFIG_PATH))
+        raw.is_a?(Hash) ? raw[key] : nil
+      rescue StandardError
+        nil
+      end
+
+      def self.build_categories
+        raw = load_config_section('owasp_categories')
+        return BUILT_IN_CATEGORIES unless raw.is_a?(Hash) && !raw.empty?
+        BUILT_IN_CATEGORIES.each_with_object({}) do |(id, defaults), merged|
+          entry = raw[id]
+          merged[id] = if entry.is_a?(Hash) && entry['name'] && entry['weight']
+                         { name: entry['name'].to_s, weight: entry['weight'].to_f }
+                       else
+                         defaults
+                       end
+        end
+      end
+
+      def self.build_severity_weights
+        raw = load_config_section('severity_weights')
+        return BUILT_IN_SEVERITY_WEIGHTS unless raw.is_a?(Hash) && !raw.empty?
+        weights = BUILT_IN_SEVERITY_WEIGHTS.dup
+        raw.each { |k, v| weights[k.to_s.upcase] = v.to_i if weights.key?(k.to_s.upcase) }
+        weights
+      end
+
+      OWASP_CATEGORIES = build_categories.freeze
+      SEVERITY_WEIGHTS = build_severity_weights.freeze
 
       def initialize(findings)
         @findings   = findings
@@ -77,8 +116,12 @@ module MPF
       end
 
       def compute_overall_score(scored)
-        total = scored.values.sum { |v| v[:weighted] }
-        [(100 - total).round(1), 0].max
+        return 100.0 if scored.empty?
+        # Average the per-category weighted risk instead of summing it: the
+        # old sum saturated at 0 for any non-trivial real APK (>~14 weighted
+        # findings), making every grade F and the score meaningless.
+        avg = scored.values.sum { |v| v[:weighted] } / scored.size.to_f
+        [(100.0 - (avg * 2)).round(1), 0].max
       end
 
       def risk_level(score)

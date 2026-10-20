@@ -3,7 +3,7 @@
   "private": true,
   "version": "2.0.0",
   "type": "module",
-  "description": "MPF — Android APK reverse-engineering IDE (React frontend)",
+  "description": "MPF \u2014 Android APK reverse-engineering IDE (React frontend)",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -18,7 +18,10 @@
     "monaco-editor": "^0.52.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "@fontsource/inter-tight": "^5.1.0",
+    "@fontsource/playfair-display": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.0"
   },
   "devDependencies": {
     "@testing-library/react": "^16.1.0",

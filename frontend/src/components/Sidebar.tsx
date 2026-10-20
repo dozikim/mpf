@@ -19,7 +19,7 @@ export function Sidebar() {
             <NavLink
               key={item.to}
               to={`/analysis/${id}/${item.to}`}
-              end={item.to === "overview"}
+              end
               className={({ isActive }) => `sidebar-link${isActive ? " active" : ""}`}
             >
               <span className="tree-name">{item.label}</span>

@@ -10,11 +10,11 @@ module MPF
         exported_activity:      { owasp: "M1", severity: "HIGH",     pattern: /exported.*=.*"true"/i,                 title: "Exported Activity without Permission" },
         exported_receiver:      { owasp: "M1", severity: "HIGH",     pattern: /receiver.*exported.*true/i,            title: "Unprotected Broadcast Receiver" },
         implicit_intent:        { owasp: "M1", severity: "MEDIUM",   pattern: /sendBroadcast|startActivity/,          title: "Implicit Intent Usage" },
-        deeplink_no_validate:   { owasp: "M1", severity: "HIGH",     pattern: /data.*scheme|host.*path/i,             title: "Unvalidated Deep Link Handler" },
+        deeplink_no_validate:   { owasp: "M1", severity: "HIGH",     pattern: /<data[^>]*android:scheme|android:scheme\s*=/, title: "Unvalidated Deep Link Handler" },
 
         # M2 – Insecure Data Storage
         world_readable:         { owasp: "M2", severity: "CRITICAL", pattern: /MODE_WORLD_READABLE|MODE_WORLD_WRITABLE/, title: "World-Readable File Storage" },
-        shared_prefs_plain:     { owasp: "M2", severity: "HIGH",     pattern: /getSharedPreferences.*MODE_PRIVATE/,   title: "Sensitive Data in SharedPreferences" },
+        shared_prefs_plain:     { owasp: "M2", severity: "HIGH",     pattern: /getSharedPreferences\s*\(/,          title: "Sensitive Data in SharedPreferences" },
         external_storage:       { owasp: "M2", severity: "HIGH",     pattern: /getExternalStorage|WRITE_EXTERNAL/,    title: "Data Written to External Storage" },
         sqlite_no_encrypt:      { owasp: "M2", severity: "HIGH",     pattern: /SQLiteDatabase|openOrCreateDatabase/,  title: "Unencrypted SQLite Database" },
         log_sensitive:          { owasp: "M2", severity: "MEDIUM",   pattern: /Log\.(d|i|v|e|w)\(.*password|Log\.(d|i|v|e|w)\(.*token/i, title: "Sensitive Data in Logs" },
@@ -30,31 +30,51 @@ module MPF
         no_session_timeout:     { owasp: "M4", severity: "MEDIUM",   pattern: /setMaxInactiveInterval\(-1\)/,        title: "Unlimited Session Timeout" },
 
         # M5 – Insufficient Cryptography
-        weak_cipher:            { owasp: "M5", severity: "CRITICAL", pattern: /DES\/|RC4|Blowfish|AES\/ECB/i,        title: "Weak or Broken Cipher Algorithm" },
+        weak_cipher:            { owasp: "M5", severity: "CRITICAL", pattern: /DES\/|RC4\b|Blowfish|AES\/ECB/i,        title: "Weak or Broken Cipher Algorithm" },
         short_key:              { owasp: "M5", severity: "HIGH",     pattern: /KeyGenerator.*AES.*128|RSA.*1024/i,   title: "Insufficient Cryptographic Key Length" },
         hardcoded_key:          { owasp: "M5", severity: "CRITICAL", pattern: /SecretKeySpec.*"[A-Za-z0-9+\/]{8,}"/i, title: "Hardcoded Cryptographic Key" },
 
         # M6 – Insecure Authorization
-        path_traversal:         { owasp: "M6", severity: "HIGH",     pattern: /\.\.\/|\.\.\\|\%2e\%2e/i,            title: "Path Traversal Vulnerability" },
-        missing_permission:     { owasp: "M6", severity: "MEDIUM",   pattern: /checkCallingPermission|enforcePermission/i, title: "Missing Permission Enforcement" },
+        path_traversal:         { owasp: "M6", severity: "HIGH",     pattern: /\.\.\/(?=[A-Za-z])|\.\.\\(?=[A-Za-z])|\%2e\%2e/i, title: "Path Traversal Vulnerability" },
+        # NOTE: there is deliberately no "missing permission enforcement"
+        # presence rule — matching checkCallingPermission/enforcePermission
+        # would flag apps that DO enforce permissions (inverted logic).
 
         # M7 – Client Code Quality
-        sql_injection_vuln:     { owasp: "M7", severity: "CRITICAL", pattern: /rawQuery|execSQL.*\+/,                title: "SQL Injection via String Concatenation" },
+        sql_injection_vuln:     { owasp: "M7", severity: "CRITICAL", pattern: /rawQuery\s*\(|rawQuery(?![A-Za-z])|execSQL\s*\(.*\+/, title: "SQL Injection via String Concatenation" },
         webview_js:             { owasp: "M7", severity: "CRITICAL", pattern: /addJavascriptInterface|setJavaScriptEnabled/i, title: "WebView JavaScript Enabled" },
         intent_extra_unsafe:    { owasp: "M7", severity: "HIGH",     pattern: /getIntent\(\)\.getStringExtra|getIntExtra/i, title: "Unvalidated Intent Extra Data" },
 
         # M8 – Code Tampering
         debug_enabled:          { owasp: "M8", severity: "HIGH",     pattern: /android:debuggable="true"/i,          title: "Application Debuggable Flag Enabled" },
-        no_root_detect:         { owasp: "M8", severity: "MEDIUM",   pattern: /Build\.TAGS.*test-keys/i,             title: "Missing Root Detection" },
-        emulator_detect:        { owasp: "M8", severity: "LOW",      pattern: /Build\.FINGERPRINT.*generic/i,        title: "Missing Emulator Detection" },
+        # Root/emulator detection are ABSENCE rules (see ABSENCE_RULES below):
+        # as presence patterns they flagged the protection itself as the flaw.
 
         # M9 – Reverse Engineering
-        no_obfuscation:         { owasp: "M9", severity: "MEDIUM",   pattern: /proguard-rules|minifyEnabled.*false/i, title: "Code Obfuscation Disabled" },
+        no_obfuscation:         { owasp: "M9", severity: "MEDIUM",   pattern: /minifyEnabled\s+false/i,             title: "Code Obfuscation Disabled" },
         source_comments:        { owasp: "M9", severity: "LOW",      pattern: /\/\/ TODO|\/\/ FIXME|\/\/ HACK/i,    title: "Developer Comments in Production Code" },
 
         # M10 – Extraneous Functionality
         debug_code:             { owasp: "M10", severity: "MEDIUM",  pattern: /BuildConfig\.DEBUG|isDebugBuild/i,    title: "Debug Code in Production Build" },
-        test_endpoint:          { owasp: "M10", severity: "HIGH",    pattern: /staging\.|dev\.|test\.|localhost/i,   title: "Test/Staging Endpoint in Production" }
+        test_endpoint:          { owasp: "M10", severity: "HIGH",    pattern: %r{https?://[^\s"'<>\(\)\[\]]*\b(staging|dev|test|localhost)\b|\blocalhost\b}i,   title: "Test/Staging Endpoint in Production" }
+      }.freeze
+
+      # URLs that appear in nearly every APK and are NOT cleartext-HTTP
+      # vulnerabilities: XML namespace declarations, document schemas and
+      # licence texts. Flagging them produced hundreds of bogus CRITICAL
+      # findings per APK, so the cleartext-HTTP rule ignores them.
+      BENIGN_URL_FRAGMENTS = %w[
+        schemas.android.com www.w3.org w3.org purl.org oasis-open.org
+        java.sun.com apache.org xmlns licenses
+      ].freeze
+
+      # Absence rules: the vulnerability is the MISSING control, so these
+      # fire only when no scanned segment shows the protective pattern.
+      ABSENCE_RULES = {
+        no_root_detect:  { owasp: "M8", severity: "MEDIUM", title: "Missing Root Detection",
+                           present: [/RootBeer/i, /SafetyNet/i, /PlayIntegrity/i, /isRooted/i, /checkForRoot/i] },
+        emulator_detect: { owasp: "M8", severity: "LOW",    title: "Missing Emulator Detection",
+                           present: [/isEmulator/i, /emulator\w*[Dd]etect/i, /Build\.FINGERPRINT.*generic/i, /goldfish/i, /ranchu/i] }
       }.freeze
 
       def initialize(apk_path)
@@ -128,22 +148,51 @@ module MPF
           seen = {}
           segments.each do |source, text|
             OWASP_RULES.each do |rule_id, rule|
-              match = rule[:pattern].match(text)
-              next unless match
               key = "#{rule_id}:#{source}"
               next if seen[key]
+
+              if rule_id == :http_cleartext
+                # Special-case: only fire when the segment holds at least one
+                # cleartext URL that isn't a known-benign namespace/schema.
+                url = first_cleartext_url(text)
+                next unless url
+                seen[key] = true
+                match = url.match(rule[:pattern])
+                @findings << build_finding(rule_id, rule, source: source, match: match, text: url)
+                next
+              end
+
+              match = rule[:pattern].match(text)
+              next unless match
               seen[key] = true
               @findings << build_finding(rule_id, rule, source: source, match: match, text: text)
             end
           end
+
+          # Absence rules: fire only if the protection appears NOWHERE.
+          ABSENCE_RULES.each do |rule_id, rule|
+            present = segments.any? do |_, text|
+              rule[:present].any? { |p| p.match?(text) }
+            end
+            next if present
+            finding = build_finding(rule_id, rule, source: "application-wide")
+            finding[:evidence] = "No matching protection found in any scanned file (DEX strings, manifest, resources)."
+            @findings << finding
+          end
         else
-          # Fallback (file unreadable / not a valid APK): probabilistic simulation.
+          # Fallback (file unreadable / not a valid APK / rubyzip missing):
+          # probabilistic simulation. Findings are illustrative ONLY — say so
+          # loudly and tag them, so a simulation is never mistaken for a scan.
+          log_warn("Direct APK scan unavailable (file unreadable, not a valid APK, " \
+                   "or the rubyzip gem is not installed — run `bundle install`).")
+          log_warn("SIMULATION MODE: findings below are illustrative examples, NOT results from this APK.")
           OWASP_RULES.each do |rule_id, rule|
             probability = { "CRITICAL" => 0.65, "HIGH" => 0.55, "MEDIUM" => 0.45, "LOW" => 0.35 }[rule[:severity]] || 0.4
             next unless rand < probability
             @findings << build_finding(rule_id, rule)
           end
           @findings = ensure_minimum_findings(@findings)
+          @findings.each { |f| f[:simulated] = true }
         end
 
         log_complete
@@ -172,8 +221,15 @@ module MPF
           end
         end
         segments
-      rescue LoadError, Zip::Error, StandardError
+      rescue LoadError, StandardError
         nil
+      end
+
+      # Return the first non-benign cleartext URL in the text, or nil.
+      def first_cleartext_url(text)
+        text.scan(%r{http://[^\s"'<>\)\]]+}i).find do |u|
+          !BENIGN_URL_FRAGMENTS.any? { |frag| u.downcase.include?(frag) }
+        end
       end
 
       # Pull printable ASCII runs (>=4 chars) out of binary DEX bytecode.
@@ -294,9 +350,20 @@ module MPF
       end
 
       def relevant_to_module?(finding, module_name)
+        # Primary OWASP category per exploit module (mirrors the framework
+        # registry in core/framework.rb). Every exploit module must appear
+        # here — an unmapped module silently returns zero findings.
         module_owasp = {
-          "sql_injection" => "M7", "webview_rce" => "M7", "ipc_bypass" => "M1",
-          "clipboard_hijack" => "M2", "data_exfiltration" => "M2"
+          "sql_injection"              => "M7",
+          "webview_rce"                => "M7",
+          "ipc_bypass"                 => "M1",
+          "intent_hijacking"           => "M1",
+          "deeplink_injection"         => "M1",
+          "broadcast_receiver_exploit" => "M1",
+          "fragment_injection"         => "M1",
+          "tapjacking"                 => "M1",
+          "clipboard_hijack"           => "M2",
+          "data_exfiltration"          => "M2"
         }
         target = module_owasp[module_name]
         target && finding[:owasp]&.include?(target)
@@ -304,6 +371,9 @@ module MPF
 
       def log_start
         puts("\e[36m[*]\e[0m Initializing static analysis on: #{@apk_name}")
+      end
+      def log_warn(msg)
+        puts("\e[33m[!]\e[0m #{msg}")
       end
       def log_complete
         puts("\e[32m[+]\e[0m Analysis complete — #{@findings.size} findings detected")

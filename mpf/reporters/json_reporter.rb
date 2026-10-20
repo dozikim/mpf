@@ -4,6 +4,7 @@
 
 require 'json'
 require 'time'
+require 'fileutils'
 
 module MPF
   module Reporters
@@ -18,7 +19,7 @@ module MPF
         report = {
           meta: {
             tool:       "MPF – Mobile Penetration Testing Framework",
-            version:    "2.0.0",
+            version:    MPF::VERSION,
             generated:  Time.now.iso8601,
             session:    @session.summary
           },
@@ -37,7 +38,7 @@ module MPF
           audit_log:        @session.export_audit_log
         }
 
-        FileUtils.mkdir_p(File.dirname(output_path)) rescue nil
+        FileUtils.mkdir_p(File.dirname(output_path))
         File.write(output_path, JSON.pretty_generate(report))
         puts "\e[32m[+]\e[0m JSON report saved: #{output_path}"
         output_path

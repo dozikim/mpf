@@ -5,7 +5,7 @@ import type { DomainIntelOut } from "../api/types";
 import { Column, DataTable } from "../components/DataTable";
 import { SourceLink } from "../components/SourceLink";
 
-export function DomainIntelPage() {
+export function DomainIntelPage({ title = "DOMAIN INTELLIGENCE" }: { title?: string }) {
   const { id = "" } = useParams();
   const columns: Column<DomainIntelOut>[] = [
     { key: "domain", header: "DOMAIN", sortable: true, className: "mono", render: (r) => r.domain },
@@ -22,5 +22,5 @@ export function DomainIntelPage() {
     { key: "osm", header: "OPENSTREETMAP", render: (r) => r.latitude && r.longitude ? <a className="btn btn-sm" href={`https://www.openstreetmap.org/?mlat=${r.latitude}&mlon=${r.longitude}`} target="_blank" rel="noreferrer">OSM</a> : "—" },
     { key: "source", header: "SOURCE", render: (r) => <SourceLink path={r.source_file} line={r.line_number} /> },
   ];
-  return <DataTable title="DOMAIN MALWARE CHECK" subtitle="Extracted domains, hosts and report links with stored source evidence." columns={columns} useData={(p) => useDomainIntel(id, p)} defaultSort="domain" rowKey={(r) => r.id} />;
+  return <DataTable title={title} subtitle="Extracted domains, hosts and report links with stored source evidence." columns={columns} useData={(p) => useDomainIntel(id, p)} defaultSort="domain" rowKey={(r) => r.id} />;
 }

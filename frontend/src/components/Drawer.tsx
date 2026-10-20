@@ -21,12 +21,12 @@ export function Drawer({ title, subtitle, onClose, children }: Props) {
   return (
     <>
       <div className="drawer-overlay" onClick={onClose} />
-      <aside className="drawer" role="dialog" aria-label={title}>
-        <span className="close" onClick={onClose} role="button" aria-label="Close">
+      <aside className="drawer" role="dialog" aria-modal="true" aria-label={title}>
+        <button type="button" className="close" onClick={onClose} aria-label="Close">
           ✕
-        </span>
+        </button>
         <h2>{title}</h2>
-        {subtitle && <div style={{ color: "var(--muted)", fontFamily: "var(--font-mono)", fontSize: 12 }}>{subtitle}</div>}
+        {subtitle && <div className="muted-sm" style={{ fontFamily: "var(--font-mono)" }}>{subtitle}</div>}
         {children}
       </aside>
     </>

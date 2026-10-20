@@ -41,6 +41,11 @@ module MPF
 
         cmd = tokens[0].downcase
 
+        # Suppress the trailing space after path completions for `use`: the
+        # appended space would strand the cursor in a state where the next TAB
+        # can only re-offer the top-level prefixes instead of descending.
+        Readline.completion_append_character = (cmd == 'use' ? nil : ' ')
+
         case cmd
         when 'use'
           complete_use(word, tokens)
@@ -69,6 +74,14 @@ module MPF
       # -----------------------------------------------------------------------
       def complete_use(word, tokens)
         all_paths = @framework.modules.keys
+
+        # Cursor sits right after a manually typed space following a path
+        # prefix (e.g. "use exploits/ <TAB>"): completing here would append
+        # onto the leftover prefix, producing garbage — offer nothing and let
+        # the user backspace the space instead.
+        if word.empty? && tokens.size >= 2 && tokens[-2].to_s.include?('/')
+          return []
+        end
 
         # Level 0: no slash yet → show top-level prefixes
         if word.empty? || !word.include?('/')

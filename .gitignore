@@ -40,6 +40,11 @@ coverage/
 storage/
 *.tsbuildinfo
 
+# MPF CLI generated artifacts (reports / temp scans / saved workflows)
+mpf/reports/
+mpf/Temp/
+workflows/
+
 # IDE
 .vscode/
 .idea/

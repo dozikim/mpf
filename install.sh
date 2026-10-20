@@ -22,7 +22,20 @@ check_cmd() {
 
 echo -e "${YELLOW}[*] Checking prerequisites...${NC}"
 check_cmd docker
-check_cmd docker compose || check_cmd docker-compose
+# `docker compose` (v2 plugin) and `docker-compose` (v1 binary) are different
+# commands — check_cmd only takes one name, so detect the compose variant
+# explicitly instead of `check_cmd docker compose || check_cmd docker-compose`
+# (which would just check "docker" twice and always skip the fallback).
+if docker compose version &>/dev/null; then
+    COMPOSE="docker compose"
+    echo -e "${GREEN}[✓]${NC} docker compose (v2 plugin) found"
+elif command -v docker-compose &>/dev/null; then
+    COMPOSE="docker-compose"
+    echo -e "${GREEN}[✓]${NC} docker-compose (v1) found"
+else
+    echo -e "${RED}[!] docker compose is not installed. Please install it first.${NC}"
+    exit 1
+fi
 check_cmd python3
 check_cmd node
 check_cmd npm
@@ -30,7 +43,7 @@ echo ""
 
 # --- Start infrastructure (Postgres + Redis) ---
 echo -e "${YELLOW}[*] Starting PostgreSQL and Redis via Docker...${NC}"
-docker compose up -d postgres redis
+$COMPOSE up -d postgres redis
 echo -e "${GREEN}[✓]${NC} Database and cache running"
 echo ""
 

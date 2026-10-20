@@ -27,6 +27,7 @@ export function SearchBar({ placeholder = "Search…", initial = "", delay = 250
       <input
         className="input"
         placeholder={placeholder}
+        aria-label={placeholder}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => {

@@ -6,7 +6,7 @@ import { useAnalysis } from "../api/hooks";
 
 export function TopBar() {
   const { id } = useParams();
-  const { data } = useAnalysis(id ?? "");
+  const { data, isLoading } = useAnalysis(id ?? "");
 
   return (
     <header className="topbar">
@@ -14,7 +14,12 @@ export function TopBar() {
         <span className="logo">▚ MPF</span>
         <span className="tagline">Mobile Pentest Framework · RE Console</span>
       </Link>
-      {data && (
+      {isLoading ? (
+        <div className="topbar-meta" aria-busy="true">
+          <span className="skeleton" style={{ width: 140 }} />
+          <span className="skeleton" style={{ width: 70 }} />
+        </div>
+      ) : data ? (
         <div className="topbar-meta">
           {data.package_name && (
             <span>
@@ -26,16 +31,14 @@ export function TopBar() {
               VER <strong>{data.version_name}</strong>
             </span>
           )}
-          <span>
-            STATUS <strong>{data.status.toUpperCase()}</strong>
-          </span>
+          <span className={`status-pill sp-${data.status}`}>{data.status.toUpperCase()}</span>
           {id && (
             <Link to={`/analysis/${id}/search`} className="btn btn-sm">
               ⌕ Search
             </Link>
           )}
         </div>
-      )}
+      ) : null}
     </header>
   );
 }

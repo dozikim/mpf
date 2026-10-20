@@ -69,17 +69,17 @@ export function App() {
         <Route path="malware/apkid" element={<ApkidPage />} />
         <Route path="malware/behaviour" element={<BehaviourPage />} />
         <Route path="malware/permissions" element={<AbusedPermissionsPage />} />
-        <Route path="malware/servers" element={<DomainIntelPage />} />
-        <Route path="malware/domains" element={<DomainIntelPage />} />
+        <Route path="malware/servers" element={<DomainIntelPage title="SERVER LOCATIONS" />} />
+        <Route path="malware/domains" element={<DomainIntelPage title="DOMAIN MALWARE CHECK" />} />
 
         {/* Reconnaissance */}
-        <Route path="recon/domains" element={<DomainIntelPage />} />
+        <Route path="recon/domains" element={<DomainIntelPage title="DOMAIN INTELLIGENCE" />} />
         <Route path="recon/urls" element={<ReconFindingsPage kind="url" />} />
         <Route path="recon/ips" element={<ReconFindingsPage kind="ip" />} />
         <Route path="recon/emails" element={<ReconFindingsPage kind="email" />} />
         <Route path="recon/dns" element={<ReconFindingsPage kind="domain" />} />
-        <Route path="recon/whois" element={<DomainIntelPage />} />
-        <Route path="recon/geoip" element={<DomainIntelPage />} />
+        <Route path="recon/whois" element={<DomainIntelPage title="WHOIS LOOKUP" />} />
+        <Route path="recon/geoip" element={<DomainIntelPage title="GEOIP LOOKUP" />} />
 
         {/* Dynamic (placeholder section) */}
         <Route path="dynamic" element={<DynamicPlaceholder />} />

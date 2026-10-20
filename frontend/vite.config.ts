@@ -14,8 +14,10 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
-    sourcemap: true,
-    chunkSizeWarningLimit: 3000,
+    // Never ship sourcemaps for a security tool — .map files expose the full
+    // original TS source to anyone who downloads the bundle.
+    sourcemap: false,
+    chunkSizeWarningLimit: 1200,
     rollupOptions: {
       output: {
         // Split the heavy editor away from the app shell so the dashboard and

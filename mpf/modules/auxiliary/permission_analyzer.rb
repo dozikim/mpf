@@ -7,7 +7,7 @@
 module MPF
   module Modules
     module Auxiliary
-      class <built-in method capitalize of str object at 0x7ea5abc43ef0>
+      class PermissionAnalyzer
         NAME        = "permission_analyzer".freeze
         OWASP       = "M1, M10".freeze
         DESCRIPTION = "Analyses declared permissions and maps overprivileged permissions to OWASP risk categories.".freeze
@@ -33,7 +33,7 @@ module MPF
           require_relative "../../engines/static_analyzer"
           analyzer = MPF::Engines::StaticAnalyzer.new(options[:TARGET])
           result   = NAME == "apk_info_scanner" ? analyzer.extract_apk_info : analyzer.analyze_permissions
-          log "[+] #permission_analyzer complete."
+          log "[+] #{NAME} complete."
           result.each { |k, v| log "    #{k}: #{v}" }
           result
         end

@@ -33,7 +33,7 @@ export function ManifestPage() {
             {summaryQ.isLoading ? (
               <LoadingState />
             ) : s ? (
-              <dl className="kv" style={{ marginTop: 0 }}>
+              <dl className="kv kv-flush">
                 <dt>Package</dt>
                 <dd className="mono">{s.package_name ?? "—"}</dd>
                 <dt>Version</dt>

@@ -22,7 +22,14 @@ trap cleanup SIGINT SIGTERM
 
 # --- Ensure infrastructure is running ---
 echo -e "${YELLOW}[*] Ensuring PostgreSQL and Redis are running...${NC}"
-docker compose up -d postgres redis
+if docker compose version &>/dev/null; then
+    docker compose up -d postgres redis
+elif command -v docker-compose &>/dev/null; then
+    docker-compose up -d postgres redis
+else
+    echo -e "${RED}[!] docker compose is not installed. Please install it first.${NC}"
+    exit 1
+fi
 echo -e "${GREEN}[✓]${NC} Infrastructure ready"
 echo ""
 

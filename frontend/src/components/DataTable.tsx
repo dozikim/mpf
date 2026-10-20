@@ -69,6 +69,13 @@ export function DataTable<T>({
     setPage(1);
   };
 
+  const onHeaderKeyDown = (e: React.KeyboardEvent, key: string) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleSort(key);
+    }
+  };
+
   return (
     <div className="content-pad">
       <div className="page-head">
@@ -105,6 +112,11 @@ export function DataTable<T>({
                       key={c.key}
                       className={c.sortable ? "sortable" : undefined}
                       onClick={c.sortable ? () => toggleSort(c.key) : undefined}
+                      tabIndex={c.sortable ? 0 : undefined}
+                      onKeyDown={c.sortable ? (e) => onHeaderKeyDown(e, c.key) : undefined}
+                      aria-sort={
+                        sort === c.key ? (order === "asc" ? "ascending" : "descending") : undefined
+                      }
                     >
                       {c.header}
                       {sort === c.key && (order === "asc" ? " ▲" : " ▼")}

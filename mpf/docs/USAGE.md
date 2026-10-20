@@ -10,7 +10,9 @@ ruby --version
 # Ubuntu/Debian:
 sudo apt install apktool adb
 
-# 3. Run MPF
+# 3. Run MPF (from inside the `mpf/` directory — reports and saved
+#    workflows are written relative to where you launch it)
+cd mpf
 ruby mpf.rb
 ```
 

@@ -70,7 +70,7 @@ export function OverviewPage() {
 
       <div className="card">
         <h2>APPLICATION</h2>
-        <dl className="kv" style={{ marginTop: 0 }}>
+        <dl className="kv kv-flush">
           <dt>PACKAGE NAME</dt><dd className="mono">{data.package_name ?? "—"}</dd>
           <dt>VERSION</dt><dd className="mono">{data.version_name ?? "—"} ({data.version_code ?? "?"})</dd>
           <dt>TARGET SDK</dt><dd className="mono">{data.target_sdk ?? "—"}</dd>
@@ -95,7 +95,7 @@ export function OverviewPage() {
       {m && (
         <div className="card">
           <h2>SECURITY POSTURE</h2>
-          <dl className="kv" style={{ marginTop: 0 }}>
+          <dl className="kv kv-flush">
             <dt>CERTIFICATE INFO</dt><dd className="mono">{counts.certificates ?? 0} signing certificate records</dd>
             <dt>SIGNATURE INFO</dt><dd className="mono"><Link to={`/analysis/${id}/certificates`}>OPEN CERTIFICATES</Link></dd>
             <dt>DEBUGGABLE</dt><dd><BoolTag value={m.debuggable} trueLabel="DEBUGGABLE" falseLabel="NO" /></dd>
@@ -114,7 +114,7 @@ export function OverviewPage() {
               <div className="tile" key={k}><span className="tile-label">{k === "WARNING" ? "MEDIUM" : k}</span><span className="tile-value">{chart[k] ?? 0}</span></div>
             ))}
           </div>
-          <dl className="kv" style={{ marginTop: 0 }}>
+          <dl className="kv kv-flush">
             <dt>DETECTED TRACKERS</dt><dd>{sec.detected_trackers.join(", ") || "—"}</dd>
             <dt>DETECTED THIRD-PARTY SDKS</dt><dd>{sec.detected_third_party_sdks.slice(0, 20).join(", ") || "—"}</dd>
             <dt>MALWARE INDICATORS</dt><dd>{sec.malware_indicators.join(", ") || "—"}</dd>

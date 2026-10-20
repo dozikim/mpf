@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 ruby '>= 2.7.0'
 
-# Core framework — all stdlib, no gems required for base functionality
-# The following are optional enhancements
-
+# Core framework — mostly stdlib. rubyzip powers the real APK content scan in
+# engines/static_analyzer.rb; without it the analyzer silently degrades to
+# simulation mode, so it is a hard dependency, not an optional enhancement.
+gem 'rubyzip',   '~> 2.3'    # Real APK (zip) content scanning
+gem 'readline',  '>= 0.0.4'  # REPL line editing; stdlib readline was removed in Ruby 3.4
 gem 'json',      '>= 2.6'    # JSON report generation (usually stdlib)
 gem 'rake',      '>= 13.0'   # Task automation
 

@@ -32,7 +32,7 @@ module MPF
           owasp_chain: ["M1", "M6", "M4"],
           steps:       ["Discover exported components via manifest parsing", "Launch exported Activity from malicious app", "Trigger privileged operation without authentication", "Gain unauthorized access to sensitive functionality"],
           severity:    "HIGH",
-          trigger_rules: [:exported_activity, :exported_receiver, :missing_permission]
+          trigger_rules: [:exported_activity, :exported_receiver]
         },
         {
           id:          "CHAIN-004",
@@ -63,9 +63,10 @@ module MPF
         active_chains = []
 
         CHAIN_TEMPLATES.each do |template|
-          # Check if at least 2 trigger rules are present in findings
+          # A chain fires only when at least 2 of its trigger rules are
+          # present — a single shared rule is correlation noise, not a chain.
           matched = template[:trigger_rules].count { |r| @detected_rules.include?(r) }
-          next if matched < 1
+          next if matched < 2
 
           confidence = (matched.to_f / template[:trigger_rules].size * 100).round
           chain = template.dup

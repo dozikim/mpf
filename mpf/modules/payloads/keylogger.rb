@@ -9,7 +9,7 @@
 module MPF
   module Modules
     module Payloads
-      class <built-in method capitalize of str object at 0x7ea5abc33270>
+      class Keylogger
         NAME        = "keylogger".freeze
         OWASP       = "M2, M4".freeze
         SEVERITY    = "CRITICAL".freeze
@@ -36,7 +36,7 @@ module MPF
         end
 
         def stage(options = {})
-          log "[*] Staging payload : #keylogger"
+          log "[*] Staging payload : #{NAME}"
           log "[*] Target          : #{options[:TARGET]}"
           log "[!] SIMULATION ONLY : No code executed on device."
           log "[*] Payload staged and ready for delivery (simulated)."

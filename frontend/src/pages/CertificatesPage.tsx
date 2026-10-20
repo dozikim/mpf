@@ -25,7 +25,7 @@ export function CertificatesPage() {
         data.map((c) => (
           <div key={c.id} className="card">
             <h2>{c.subject ?? "Certificate"}</h2>
-            <dl className="kv" style={{ marginTop: 0 }}>
+            <dl className="kv kv-flush">
               <dt>Subject</dt>
               <dd className="mono">{c.subject ?? "—"}</dd>
               <dt>Issuer</dt>

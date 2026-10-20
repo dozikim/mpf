@@ -22,6 +22,13 @@ import "./styles/ide.css";
 // Serve Monaco from the bundled npm package rather than the default CDN, so the
 // console works fully offline / air-gapped (typical for a pentest environment).
 // Java/Smali/XML use the plain editor worker; JSON gets its dedicated worker.
+declare global {
+  interface Window {
+    MonacoEnvironment?: {
+      getWorker: (workerId: string, label: string) => Worker;
+    };
+  }
+}
 self.MonacoEnvironment = {
   getWorker(_id, label) {
     if (label === "json") return new jsonWorker();

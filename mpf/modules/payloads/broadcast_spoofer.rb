@@ -9,7 +9,7 @@
 module MPF
   module Modules
     module Payloads
-      class <built-in method capitalize of str object at 0x7ea5abc43ef0>
+      class BroadcastSpoofer
         NAME        = "broadcast_spoofer".freeze
         OWASP       = "M1".freeze
         SEVERITY    = "MEDIUM".freeze
@@ -36,7 +36,7 @@ module MPF
         end
 
         def stage(options = {})
-          log "[*] Staging payload : #broadcast_spoofer"
+          log "[*] Staging payload : #{NAME}"
           log "[*] Target          : #{options[:TARGET]}"
           log "[!] SIMULATION ONLY : No code executed on device."
           log "[*] Payload staged and ready for delivery (simulated)."

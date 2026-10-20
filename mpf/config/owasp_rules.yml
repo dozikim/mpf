@@ -1,6 +1,11 @@
 # =============================================================================
 # MPF OWASP Detection Rules Configuration
 # Framework Version: 2.0.0
+#
+# LIVE CONFIG: MPF::Engines::OWASPEngine reads `owasp_categories` and
+# `severity_weights` from this file at startup (built-in identical defaults
+# apply if the file is missing or unparseable). The remaining sections are
+# reference material kept in sync by hand.
 # =============================================================================
 
 owasp_categories:

@@ -31,11 +31,14 @@ import type {
   TreeNode,
 } from "./types";
 
-let apiBase = import.meta.env.VITE_API_BASE_URL || "";
-if (apiBase && !apiBase.startsWith("http://") && !apiBase.startsWith("https://")) {
-  apiBase = `https://${apiBase}`;
+let apiBase = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/+$/, "");
+if (apiBase && !/^https?:\/\//i.test(apiBase)) {
+  // Don't force https on local dev hosts — the Vite proxy exists precisely
+  // for plain-http localhost backends.
+  const isLocal = /^(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/i.test(apiBase);
+  apiBase = `${isLocal ? "http" : "https"}://${apiBase}`;
 }
-const BASE = apiBase + "/api/v1";
+const BASE = apiBase ? `${apiBase}/api/v1` : "/api/v1";
 
 export class ApiError extends Error {
   status: number;

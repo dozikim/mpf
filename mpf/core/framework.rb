@@ -123,8 +123,8 @@ module MPF
       end
 
       def severity_mapping(name)
-        critical = %i[webview_rce sql_injection reverse_shell credential_stealer data_exfiltration keylogger]
-        high     = %i[ipc_bypass intent_hijacking fragment_injection persistence_agent token_extractor sms_interceptor]
+        critical = %i[webview_rce sql_injection reverse_shell credential_stealer data_exfiltration keylogger sms_interceptor]
+        high     = %i[ipc_bypass intent_hijacking fragment_injection persistence_agent token_extractor]
         critical.include?(name.to_sym) ? "CRITICAL" : high.include?(name.to_sym) ? "HIGH" : "MEDIUM"
       end
 

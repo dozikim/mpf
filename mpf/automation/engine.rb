@@ -7,6 +7,7 @@
 
 require 'json'
 require 'time'
+require 'fileutils'
 
 module MPF
   module Automation
@@ -237,7 +238,7 @@ module MPF
 
         when "report"
           output_dir = @session.get_option(:OUTPUT) || "./reports"
-          FileUtils.mkdir_p(output_dir) rescue nil
+          FileUtils.mkdir_p(output_dir)
 
           owasp = MPF::Engines::OWASPEngine.new(@session.results).generate_compliance_report
           chains = MPF::Engines::ChainReasoner.new(@session.results).generate_chains
@@ -309,15 +310,18 @@ module MPF
           wf[:steps] = (wf[:steps] || []).map { |s| s.transform_keys(&:to_sym) }
           @user_workflows[name.to_s] = wf
         end
-      rescue
+      rescue StandardError => e
+        # Best-effort by design (runs during boot), but never silently:
+        warn "[MPF] Ignoring unreadable saved workflows (#{path}): #{e.message}"
         @user_workflows = {}
       end
 
       def persist_workflows
-        FileUtils.mkdir_p(@workflow_dir) rescue nil
+        FileUtils.mkdir_p(@workflow_dir)
         path = "#{@workflow_dir}/user_workflows.json"
         File.write(path, JSON.pretty_generate(@user_workflows))
-      rescue
+      rescue StandardError => e
+        warn "[MPF] Could not save workflows to #{@workflow_dir}: #{e.message}"
       end
 
       # -----------------------------------------------------------------------

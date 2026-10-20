@@ -14,7 +14,7 @@ services:
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: mpf
-      POSTGRES_PASSWORD: mpf
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mpf_dev_only}
       POSTGRES_DB: mpf
     volumes:
       - pgdata:/var/lib/postgresql/data
@@ -45,7 +45,7 @@ services:
       redis:
         condition: service_healthy
     environment:
-      MPF_DATABASE_URL: postgresql+psycopg://mpf:mpf@postgres:5432/mpf
+      MPF_DATABASE_URL: postgresql+psycopg://mpf:${POSTGRES_PASSWORD:-mpf_dev_only}@postgres:5432/mpf
       MPF_REDIS_URL: redis://redis:6379/0
       MPF_STORAGE_ROOT: /data/storage
     volumes:
@@ -65,7 +65,7 @@ services:
       redis:
         condition: service_healthy
     environment:
-      MPF_DATABASE_URL: postgresql+psycopg://mpf:mpf@postgres:5432/mpf
+      MPF_DATABASE_URL: postgresql+psycopg://mpf:${POSTGRES_PASSWORD:-mpf_dev_only}@postgres:5432/mpf
       MPF_REDIS_URL: redis://redis:6379/0
       MPF_STORAGE_ROOT: /data/storage
     volumes:

@@ -173,9 +173,11 @@ module MPF
 
       # analyze ---------------------------------------------------------------
       def cmd_analyze(args)
-        return err("Usage: analyze <path/to/app.apk>") if args.empty?
-        puts "\n\e[36m[*]\e[0m Starting full analysis: \e[33m#{args[0]}\e[0m"
-        result = @framework.dispatcher.run_full_analysis(args[0])
+        path = args.join(" ")
+        return err("Usage: analyze <path/to/app.apk>") if path.empty?
+        puts "\n\e[36m[*]\e[0m Starting full analysis: \e[33m#{path}\e[0m"
+        result = @framework.dispatcher.run_full_analysis(path)
+        return err(result[:error]) if result[:error]
         puts "\n\e[32m[+]\e[0m Analysis complete!"
         puts "    Findings:      \e[31m#{result[:findings].size}\e[0m"
         puts "    Attack Chains: \e[33m#{result[:chains].size}\e[0m"
@@ -187,8 +189,11 @@ module MPF
       def cmd_report(args)
         return err("Usage: report generate") unless args[0]&.downcase == "generate"
         dir = @session.get_option(:OUTPUT) || "./reports"
-        require 'fileutils'
-        FileUtils.mkdir_p(dir) rescue nil
+        begin
+          FileUtils.mkdir_p(dir)
+        rescue SystemCallError => e
+          return err("Cannot create report directory '#{dir}': #{e.message}")
+        end
         owasp  = Engines::OWASPEngine.new(@session.results).generate_compliance_report
         chains = Engines::ChainReasoner.new(@session.results).generate_chains
         Reporters::JSONReporter.new(owasp, chains, @session).generate("#{dir}/mpf_report.json")

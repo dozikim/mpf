@@ -20,6 +20,8 @@ module MPF
         return error("No target APK specified") unless options[:TARGET] || @session.get_option(:TARGET)
 
         target  = options[:TARGET] || @session.get_option(:TARGET)
+        return error("Target APK not found: #{target}") unless File.exist?(target.to_s)
+
         type    = mod_meta[:type]
 
         log_info("Dispatching #{type} module: #{mod_meta[:name]}")
@@ -34,6 +36,18 @@ module MPF
       end
 
       def run_full_analysis(apk_path)
+        unless apk_path && File.exist?(apk_path.to_s)
+          empty_report = Engines::OWASPEngine.new([]).generate_compliance_report
+          return {
+            findings: [],
+            owasp:    empty_report,
+            chains:   [],
+            session:  @session.summary,
+            reports:  {},
+            error:    "Target APK not found: #{apk_path}"
+          }
+        end
+
         log_info("Starting full analysis pipeline on: #{apk_path}")
 
         # Phase 1 – Static Analysis
@@ -54,18 +68,22 @@ module MPF
         # Phase 4 – Session Results
         raw_findings.each { |f| @session.add_result(f) }
 
-        # Phase 5 – Report Generation
+        # Phase 5 – Report Generation (actually write the files; previously
+        # the reporters were constructed but generate() was never called, so
+        # `analyze` silently produced no report files at all)
         log_phase("Phase 4: Report Generation")
         output_dir = @session.get_option(:OUTPUT) || "./reports"
         json_reporter = Reporters::JSONReporter.new(owasp_report, chains, @session)
         html_reporter = Reporters::HTMLReporter.new(owasp_report, chains, @session)
+        json_path = json_reporter.generate(File.join(output_dir, "mpf_report.json"))
+        html_path = html_reporter.generate(File.join(output_dir, "mpf_report.html"))
 
         {
           findings:    raw_findings,
           owasp:       owasp_report,
           chains:      chains,
           session:     @session.summary,
-          reports:     { json: json_reporter, html: html_reporter }
+          reports:     { json: json_path, html: html_path }
         }
       end
 
@@ -74,11 +92,16 @@ module MPF
       def run_auxiliary(mod_meta, target)
         log_info("Running auxiliary: #{mod_meta[:name]}")
         analyzer = Engines::StaticAnalyzer.new(target)
-        case mod_meta[:name]
-        when "apk_info_scanner"    then analyzer.extract_apk_info
-        when "permission_analyzer" then analyzer.analyze_permissions
-        else { status: "ok", module: mod_meta[:name], target: target }
-        end
+        data = case mod_meta[:name]
+               when "apk_info_scanner"    then analyzer.extract_apk_info
+               when "permission_analyzer" then analyzer.analyze_permissions
+               end
+        # Normalize the return shape so callers (commander summary line,
+        # automation) always see :status/:findings — the raw analyzer hashes
+        # have neither, which printed a blank "Status:" in the REPL.
+        return { status: "completed", module: mod_meta[:name], target: target, findings: 0, data: data } if data
+
+        { status: "ok", module: mod_meta[:name], target: target, findings: 0 }
       end
 
       def run_exploit(mod_meta, target, options)
